@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <title>AppForge AI - Crea App</title>
+    <title>Lovable Pro - Full-Stack AI Builder</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        /* ===== RESET E VARIABILI ===== */
+        /* ===== STILI COMPLETI ===== */
         * {
             margin: 0;
             padding: 0;
@@ -21,104 +19,90 @@
             --bg-primary: #0a0a12;
             --bg-secondary: #12121e;
             --bg-card: #1a1a2e;
-            --bg-hover: #252540;
             --border-color: rgba(255, 255, 255, 0.06);
             --text-primary: #e8e8f0;
             --text-secondary: #9898aa;
             --accent: #6366f1;
-            --accent-hover: #818cf8;
             --accent-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
             --success: #22c55e;
             --danger: #ef4444;
             --warning: #fbbf24;
-            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
             --radius: 14px;
             --shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
             --safe-bottom: env(safe-area-inset-bottom, 0px);
         }
 
-        html, body {
-            height: 100%;
-            overflow: hidden;
+        body {
             background: var(--bg-primary);
             color: var(--text-primary);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            overflow: hidden;
             touch-action: manipulation;
-            user-select: none;
-            -webkit-user-select: none;
         }
 
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar { width: 3px; height: 3px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #2a2a3e; border-radius: 4px; }
-
-        /* ===== LAYOUT PRINCIPALE ===== */
         .app-container {
             display: flex;
             flex-direction: column;
             height: 100vh;
             height: 100dvh;
             overflow: hidden;
-            position: relative;
         }
 
-        /* ===== HEADER MOBILE ===== */
+        /* ===== HEADER ===== */
         .header {
             background: rgba(12, 12, 24, 0.95);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 8px 12px 8px 16px;
+            padding: 4px 10px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-shrink: 0;
-            z-index: 20;
-            min-height: 52px;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            min-height: 42px;
+            z-index: 10;
+            gap: 6px;
+            flex-wrap: nowrap;
         }
 
         .logo {
-            font-size: 17px;
+            font-size: 14px;
             font-weight: 700;
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             white-space: nowrap;
         }
-
         .logo i {
             -webkit-text-fill-color: initial;
             color: var(--accent);
-            font-size: 18px;
         }
 
         .badge-group {
             display: flex;
-            gap: 4px;
+            gap: 3px;
             align-items: center;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .badge-group::-webkit-scrollbar {
+            display: none;
         }
 
         .badge {
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 8px;
+            padding: 1px 6px;
+            border-radius: 10px;
+            font-size: 6px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.2px;
             border: 1px solid var(--border-color);
             white-space: nowrap;
         }
-
         .badge-purple {
             background: rgba(99, 102, 241, 0.15);
             color: #a5b4fc;
@@ -141,91 +125,172 @@
             border-color: rgba(234, 179, 8, 0.15);
         }
 
-        .header-actions {
-            display: flex;
-            gap: 4px;
-        }
-
         .btn {
-            padding: 6px 12px;
-            border-radius: 8px;
+            padding: 3px 8px;
+            border-radius: 6px;
             border: none;
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-secondary);
-            font-size: 11px;
+            font-size: 9px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 4px;
-            touch-action: manipulation;
-            -webkit-touch-callout: none;
+            gap: 3px;
+            white-space: nowrap;
         }
-
         .btn:active {
             transform: scale(0.95);
-            background: rgba(255, 255, 255, 0.08);
         }
-
         .btn-primary {
             background: var(--accent-gradient);
             color: white;
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
         }
-
         .btn-primary:active {
             transform: scale(0.95);
-            box-shadow: 0 2px 10px rgba(99, 102, 241, 0.2);
         }
-
         .btn-icon {
-            padding: 6px 8px;
-            font-size: 14px;
-            border-radius: 8px;
+            padding: 3px 5px;
+            font-size: 12px;
             background: transparent;
             border: none;
             color: var(--text-secondary);
             cursor: pointer;
-            touch-action: manipulation;
         }
-
         .btn-icon:active {
             transform: scale(0.9);
-            background: rgba(255, 255, 255, 0.05);
         }
 
-        /* ===== BODY PRINCIPALE ===== */
-        .main-body {
+        /* ===== AGENT STATUS BAR ===== */
+        .agent-bar {
+            background: rgba(16, 16, 28, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            padding: 3px 10px;
             display: flex;
-            flex-direction: column;
-            flex: 1;
-            overflow: hidden;
-            position: relative;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            min-height: 24px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .agent-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .agent-bar .step {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 8px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .agent-bar .step .num {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+        .agent-bar .step.active .num {
+            background: var(--accent);
+            color: white;
+        }
+        .agent-bar .step.done .num {
+            background: var(--success);
+            color: white;
+        }
+        .agent-bar .step .arrow {
+            color: #3a3a4a;
+            font-size: 7px;
+        }
+        .agent-bar .step:last-child .arrow {
+            display: none;
         }
 
-        /* ===== TAB MOBILE ===== */
+        /* ===== TOOLBAR VISUAL EDITOR ===== */
+        .visual-toolbar {
+            display: flex;
+            background: rgba(16, 16, 28, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            padding: 3px 10px;
+            gap: 6px;
+            flex-shrink: 0;
+            min-height: 28px;
+            overflow-x: auto;
+            align-items: center;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .visual-toolbar::-webkit-scrollbar {
+            display: none;
+        }
+        .visual-toolbar .tool-btn {
+            padding: 2px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-secondary);
+            font-size: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .visual-toolbar .tool-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+        .visual-toolbar .tool-btn:active {
+            transform: scale(0.95);
+        }
+        .visual-toolbar .tool-btn i {
+            font-size: 10px;
+        }
+        .visual-toolbar .element-info {
+            font-size: 8px;
+            color: var(--text-secondary);
+            margin-left: auto;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* ===== MOBILE TABS ===== */
         .mobile-tabs {
             display: flex;
             background: rgba(16, 16, 28, 0.95);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             flex-shrink: 0;
-            z-index: 5;
-            padding: 0 8px;
+            padding: 0 4px;
             overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
-
         .mobile-tabs::-webkit-scrollbar {
             display: none;
         }
-
         .mobile-tab {
-            padding: 10px 14px;
-            font-size: 11px;
+            padding: 6px 10px;
+            font-size: 9px;
             font-weight: 600;
             color: var(--text-secondary);
             border-bottom: 2.5px solid transparent;
@@ -234,40 +299,31 @@
             white-space: nowrap;
             display: flex;
             align-items: center;
-            gap: 6px;
-            touch-action: manipulation;
-            min-height: 44px;
+            gap: 3px;
+            min-height: 32px;
         }
-
-        .mobile-tab:active {
-            opacity: 0.7;
-        }
-
         .mobile-tab.active {
             color: var(--text-primary);
             border-bottom-color: var(--accent);
             background: rgba(99, 102, 241, 0.05);
         }
-
         .mobile-tab i {
-            font-size: 14px;
+            font-size: 11px;
         }
         .mobile-tab .tab-badge {
-            font-size: 9px;
+            font-size: 7px;
             background: rgba(99, 102, 241, 0.15);
             color: #a5b4fc;
-            padding: 1px 8px;
-            border-radius: 10px;
-            margin-left: 2px;
+            padding: 0 5px;
+            border-radius: 8px;
         }
 
-        /* ===== PANNELLI ===== */
+        /* ===== PANELS ===== */
         .panels-container {
             flex: 1;
             overflow: hidden;
             position: relative;
         }
-
         .panel {
             position: absolute;
             inset: 0;
@@ -277,23 +333,26 @@
             background: var(--bg-primary);
             animation: panelSlide 0.25s ease;
         }
-
         .panel.active {
             display: flex;
         }
-
         @keyframes panelSlide {
-            from { opacity: 0.6; transform: translateX(8px); }
-            to { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0.6;
+                transform: translateX(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        /* ===== PANNELLO CHAT ===== */
+        /* ===== CHAT ===== */
         .chat-panel {
             background: var(--bg-secondary);
         }
-
         .chat-header {
-            padding: 10px 14px;
+            padding: 4px 10px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
@@ -301,248 +360,287 @@
             flex-shrink: 0;
             background: rgba(10, 10, 18, 0.6);
         }
-
         .chat-header span {
-            font-size: 11px;
+            font-size: 9px;
             font-weight: 600;
             color: var(--text-secondary);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
-
         .status-dot {
-            width: 7px;
-            height: 7px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
             background: #22c55e;
             display: inline-block;
             animation: pulse-dot 2s infinite;
         }
-        .status-dot.offline { background: #ef4444; animation: none; }
-        .status-dot.generating { background: #fbbf24; animation: pulse-dot 0.5s infinite; }
-
+        .status-dot.offline {
+            background: #ef4444;
+            animation: none;
+        }
+        .status-dot.generating {
+            background: #fbbf24;
+            animation: pulse-dot 0.5s infinite;
+        }
         @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.8); }
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
         }
 
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 12px 12px 8px;
+            padding: 8px 10px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 6px;
             -webkit-overflow-scrolling: touch;
         }
-
         .message {
-            padding: 10px 13px;
-            border-radius: 12px;
+            padding: 6px 10px;
+            border-radius: 8px;
             max-width: 92%;
-            font-size: 13px;
-            line-height: 1.6;
+            font-size: 11px;
+            line-height: 1.5;
             animation: fadeIn 0.3s ease;
             word-wrap: break-word;
         }
-
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-
         .message.user {
             background: linear-gradient(135deg, #1a1a2e, #2a1a3e);
             align-self: flex-end;
-            border-bottom-right-radius: 4px;
+            border-bottom-right-radius: 3px;
             border: 1px solid rgba(99, 102, 241, 0.12);
         }
-
         .message.assistant {
             background: rgba(255, 255, 255, 0.03);
             align-self: flex-start;
-            border-bottom-left-radius: 4px;
+            border-bottom-left-radius: 3px;
             border: 1px solid var(--border-color);
             max-width: 100%;
         }
-
         .message .role-label {
-            font-size: 9px;
+            font-size: 7px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.3px;
             color: var(--accent);
-            margin-bottom: 2px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            margin-bottom: 1px;
         }
-
         .message .role-label.user-label {
             color: #a78bfa;
         }
-
         .message .code-block {
             background: #0a0a12;
-            border-radius: 8px;
-            padding: 10px 12px;
-            margin-top: 6px;
+            border-radius: 4px;
+            padding: 6px 8px;
+            margin-top: 3px;
             overflow-x: auto;
-            font-family: var(--font-mono);
-            font-size: 11.5px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            max-height: 250px;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .message .code-block .file-label {
+            font-family: 'JetBrains Mono', monospace;
             font-size: 9px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .message .code-block .file-label {
+            font-size: 7px;
             color: var(--text-secondary);
             background: rgba(255, 255, 255, 0.05);
-            padding: 2px 8px;
-            border-radius: 4px;
+            padding: 1px 4px;
+            border-radius: 2px;
             display: inline-block;
-            margin-bottom: 5px;
-            font-family: 'Inter', sans-serif;
+            margin-bottom: 3px;
         }
-
         .message .code-block code {
             white-space: pre-wrap;
             word-break: break-word;
-            font-size: 11px;
+            font-size: 9px;
         }
-
         .message .status-message {
-            font-size: 11px;
+            font-size: 9px;
             color: var(--text-secondary);
-            padding: 4px 0;
+            padding: 2px 0;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
-
         .message .status-message .spinner {
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .typing-indicator {
             display: flex;
-            gap: 4px;
-            padding: 10px 14px;
+            gap: 3px;
+            padding: 6px 10px;
             background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
+            border-radius: 8px;
             align-self: flex-start;
             border: 1px solid var(--border-color);
         }
-
         .typing-indicator span {
-            width: 6px;
-            height: 6px;
+            width: 4px;
+            height: 4px;
             background: var(--accent);
             border-radius: 50%;
             animation: pulse-typing 1.4s infinite;
         }
-
-        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
         @keyframes pulse-typing {
-            0%, 60%, 100% { opacity: 0.2; transform: scale(0.7); }
-            30% { opacity: 1; transform: scale(1.1); }
+            0%,
+            60%,
+            100% {
+                opacity: 0.2;
+                transform: scale(0.7);
+            }
+            30% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
         }
 
         .chat-input-area {
-            padding: 8px 12px 12px;
+            padding: 4px 8px 8px;
             border-top: 1px solid var(--border-color);
             display: flex;
-            gap: 8px;
+            gap: 4px;
             background: rgba(10, 10, 18, 0.8);
             flex-shrink: 0;
-            padding-bottom: calc(12px + var(--safe-bottom));
+            padding-bottom: calc(8px + var(--safe-bottom));
         }
-
         .chat-input-area textarea {
             flex: 1;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 10px 14px;
+            border-radius: 6px;
+            padding: 6px 10px;
             color: var(--text-primary);
-            font-size: 14px;
+            font-size: 12px;
             resize: none;
             outline: none;
             transition: all 0.2s;
-            min-height: 40px;
-            max-height: 100px;
+            min-height: 32px;
+            max-height: 70px;
             font-family: inherit;
-            line-height: 1.5;
+            line-height: 1.4;
             -webkit-appearance: none;
         }
-
         .chat-input-area textarea:focus {
             border-color: var(--accent);
             background: rgba(255, 255, 255, 0.06);
         }
-
         .chat-input-area textarea::placeholder {
             color: #4a4a5a;
-            font-size: 13px;
+            font-size: 11px;
         }
-
         .chat-input-area .btn-send {
             background: var(--accent-gradient);
             border: none;
-            border-radius: 10px;
-            padding: 0 16px;
+            border-radius: 6px;
+            padding: 0 12px;
             color: white;
-            font-size: 16px;
+            font-size: 13px;
             cursor: pointer;
             transition: all 0.2s;
-            min-width: 44px;
-            touch-action: manipulation;
+            min-width: 36px;
         }
-
         .chat-input-area .btn-send:active {
             transform: scale(0.93);
         }
         .chat-input-area .btn-send:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            transform: none;
         }
 
-        /* ===== PANNELLO EDITOR ===== */
+        /* ===== SUGGESTION CHIPS ===== */
+        .suggestion-chips {
+            display: flex;
+            gap: 3px;
+            padding: 3px 8px 4px;
+            overflow-x: auto;
+            flex-shrink: 0;
+            background: rgba(10, 10, 18, 0.6);
+            border-top: 1px solid var(--border-color);
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .suggestion-chips::-webkit-scrollbar {
+            display: none;
+        }
+        .chip {
+            padding: 3px 8px;
+            border-radius: 12px;
+            background: rgba(99, 102, 241, 0.1);
+            color: #a5b4fc;
+            font-size: 8px;
+            font-weight: 500;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .chip:active {
+            transform: scale(0.95);
+            background: rgba(99, 102, 241, 0.2);
+        }
+        .chip i {
+            font-size: 7px;
+            margin-right: 2px;
+        }
+
+        /* ===== EDITOR ===== */
         .editor-panel {
             background: var(--bg-primary);
         }
-
         .file-tabs {
             display: flex;
             background: rgba(16, 16, 28, 0.9);
             border-bottom: 1px solid var(--border-color);
-            padding: 0 8px;
+            padding: 0 4px;
             flex-shrink: 0;
             overflow-x: auto;
-            min-height: 38px;
+            min-height: 26px;
             align-items: center;
-            -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
-
         .file-tabs::-webkit-scrollbar {
             display: none;
         }
-
         .file-tab {
-            padding: 6px 12px;
-            font-size: 10.5px;
+            padding: 3px 8px;
+            font-size: 8.5px;
             color: var(--text-secondary);
             border-bottom: 2px solid transparent;
             cursor: pointer;
@@ -550,60 +648,56 @@
             white-space: nowrap;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 2px;
             font-weight: 500;
-            touch-action: manipulation;
-            min-height: 36px;
+            min-height: 24px;
         }
-
-        .file-tab:active {
-            opacity: 0.7;
-        }
-
         .file-tab.active {
             color: var(--text-primary);
             border-bottom-color: var(--accent);
             background: rgba(99, 102, 241, 0.06);
         }
-
-        .file-tab .file-icon { font-size: 11px; }
-        .file-tab .file-icon.html { color: #e34c26; }
-        .file-tab .file-icon.css { color: #264de4; }
-        .file-tab .file-icon.js { color: #f7df1e; }
-
+        .file-tab .file-icon {
+            font-size: 9px;
+        }
+        .file-tab .file-icon.html {
+            color: #e34c26;
+        }
+        .file-tab .file-icon.css {
+            color: #264de4;
+        }
+        .file-tab .file-icon.js {
+            color: #f7df1e;
+        }
+        .file-tab .file-icon.react {
+            color: #61dafb;
+        }
         .file-tab .close-btn {
             margin-left: 2px;
-            font-size: 9px;
+            font-size: 7px;
             color: var(--text-secondary);
             background: none;
             border: none;
             cursor: pointer;
-            padding: 0 3px;
-            border-radius: 4px;
-            touch-action: manipulation;
+            padding: 0 2px;
+            border-radius: 2px;
         }
-
         .file-tab .close-btn:active {
             background: rgba(239, 68, 68, 0.2);
             color: #ef4444;
         }
-
         .file-tabs .add-file-btn {
-            padding: 4px 10px;
-            font-size: 13px;
+            padding: 2px 6px;
+            font-size: 10px;
             color: var(--text-secondary);
             background: none;
             border: none;
             cursor: pointer;
-            border-radius: 6px;
-            transition: 0.2s;
+            border-radius: 3px;
             margin-left: auto;
-            touch-action: manipulation;
         }
-
         .file-tabs .add-file-btn:active {
             background: rgba(255, 255, 255, 0.05);
-            transform: scale(0.9);
         }
 
         .editor-container {
@@ -613,36 +707,32 @@
             overflow: hidden;
             background: #0a0a12;
         }
-
         .editor-with-numbers {
             display: flex;
             flex: 1;
             overflow: hidden;
-            position: relative;
         }
-
         .editor-line-numbers {
-            padding: 10px 6px 10px 10px;
+            padding: 6px 3px 6px 6px;
             text-align: right;
             color: #3a3a4a;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            line-height: 1.7;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            line-height: 1.6;
             user-select: none;
             border-right: 1px solid rgba(255, 255, 255, 0.04);
-            min-width: 30px;
+            min-width: 22px;
             background: #08080e;
             overflow: hidden;
             flex-shrink: 0;
         }
-
         .code-editor {
             flex: 1;
-            padding: 10px 14px;
+            padding: 6px 10px;
             overflow: auto;
-            font-family: var(--font-mono);
-            font-size: 12px;
-            line-height: 1.7;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            line-height: 1.6;
             outline: none;
             white-space: pre-wrap;
             word-break: break-word;
@@ -650,41 +740,35 @@
             background: #0a0a12;
             tab-size: 2;
             -webkit-overflow-scrolling: touch;
-            min-height: 100px;
+            min-height: 60px;
         }
 
-        .code-editor:focus {
-            box-shadow: inset 0 0 0 1px rgba(99, 102, 241, 0.12);
-        }
-
-        /* ===== PANNELLO PREVIEW ===== */
+        /* ===== PREVIEW ===== */
         .preview-panel {
             background: #ffffff;
+            position: relative;
         }
-
         .preview-header {
             background: #f4f4f8;
-            padding: 4px 12px;
+            padding: 2px 8px;
             border-bottom: 1px solid #e8e8ee;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-shrink: 0;
-            min-height: 30px;
+            min-height: 22px;
         }
-
         .preview-header span {
             color: #3a3a4a;
-            font-size: 10px;
+            font-size: 8px;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 3px;
         }
-
         .preview-header .dot {
-            width: 6px;
-            height: 6px;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
             background: #22c55e;
             display: inline-block;
@@ -696,38 +780,33 @@
         .preview-header .dot.error {
             background: #ef4444;
         }
-
         .preview-header .url-bar {
             background: white;
-            border-radius: 4px;
-            padding: 1px 8px;
-            font-size: 9px;
+            border-radius: 2px;
+            padding: 1px 4px;
+            font-size: 7px;
             color: #5a5a6a;
             border: 1px solid #e0e0e8;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-family: var(--font-mono);
-            max-width: 60%;
+            font-family: 'JetBrains Mono', monospace;
+            max-width: 50%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-
         .preview-frame {
             flex: 1;
             background: white;
             overflow: hidden;
             position: relative;
+            cursor: crosshair;
         }
-
         .preview-frame iframe {
             width: 100%;
             height: 100%;
             border: none;
             background: white;
+            pointer-events: none;
         }
-
         .preview-frame .empty-preview {
             display: flex;
             flex-direction: column;
@@ -735,53 +814,79 @@
             justify-content: center;
             height: 100%;
             color: #8a8a9a;
-            font-size: 13px;
-            gap: 8px;
+            font-size: 11px;
+            gap: 4px;
             background: #f8f8fc;
-            padding: 20px;
+            padding: 12px;
             text-align: center;
         }
-
         .preview-frame .empty-preview i {
-            font-size: 32px;
+            font-size: 24px;
             color: #d0d0da;
         }
 
-        .preview-frame .empty-preview span:last-child {
-            font-size: 11px;
-            color: #b0b0ba;
+        /* Selection overlay per visual editor */
+        .selection-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .selection-overlay.active {
+            pointer-events: auto;
+        }
+        .selection-overlay .hover-box {
+            position: absolute;
+            border: 2px solid rgba(99, 102, 241, 0.4);
+            background: rgba(99, 102, 241, 0.05);
+            border-radius: 4px;
+            pointer-events: none;
+            transition: all 0.15s ease;
+            display: none;
+        }
+        .selection-overlay .hover-box.visible {
+            display: block;
+        }
+        .selection-overlay .hover-box .label {
+            position: absolute;
+            top: -18px;
+            left: 0;
+            font-size: 7px;
+            background: var(--accent);
+            color: white;
+            padding: 1px 6px;
+            border-radius: 3px;
+            white-space: nowrap;
+            font-weight: 600;
         }
 
-        /* ===== LIVE STATUS BAR ===== */
+        /* ===== LIVE STATUS ===== */
         .live-status-bar {
             background: rgba(16, 16, 28, 0.95);
             border-top: 1px solid var(--border-color);
-            padding: 4px 12px;
+            padding: 2px 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-shrink: 0;
-            font-size: 10px;
+            font-size: 8px;
             color: var(--text-secondary);
-            min-height: 26px;
+            min-height: 20px;
         }
-
         .live-status-bar .status-text {
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 10px;
+            gap: 4px;
+            font-size: 8px;
         }
-
         .live-status-bar .status-text .pulse {
-            width: 5px;
-            height: 5px;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
             background: #22c55e;
             display: inline-block;
             flex-shrink: 0;
         }
-
         .live-status-bar .status-text .pulse.generating {
             background: #fbbf24;
             animation: pulse-dot 0.5s infinite;
@@ -790,16 +895,15 @@
             background: #ef4444;
             animation: none;
         }
-
         .live-status-bar .file-count {
-            font-size: 9px;
+            font-size: 7px;
             color: #4a4a5a;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 2px;
         }
 
-        /* ===== MODALE CONFIGURAZIONE API ===== */
+        /* ===== MODALI ===== */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -810,101 +914,94 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            padding: 20px;
+            padding: 16px;
         }
-
         .modal-overlay.active {
             display: flex;
         }
-
         .modal {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 24px 20px 20px;
+            border-radius: 14px;
+            padding: 16px;
             width: 100%;
-            max-width: 380px;
+            max-width: 340px;
             box-shadow: var(--shadow);
             max-height: 90vh;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             animation: modalSlide 0.3s ease;
         }
-
         @keyframes modalSlide {
-            from { opacity: 0; transform: scale(0.95) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
-
         .modal h2 {
-            font-size: 19px;
-            margin-bottom: 4px;
+            font-size: 16px;
+            margin-bottom: 3px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
         }
-
         .modal p {
             color: var(--text-secondary);
-            font-size: 13px;
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        .modal .form-group {
+            font-size: 11px;
             margin-bottom: 12px;
+            line-height: 1.4;
         }
-
+        .modal .form-group {
+            margin-bottom: 8px;
+        }
         .modal .form-group label {
-            font-size: 10px;
+            font-size: 8px;
             font-weight: 600;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.3px;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
-
         .modal .form-group input {
             width: 100%;
-            padding: 10px 14px;
+            padding: 6px 10px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 6px;
             color: var(--text-primary);
-            font-size: 13px;
+            font-size: 11px;
             outline: none;
             transition: 0.2s;
-            font-family: var(--font-mono);
+            font-family: 'JetBrains Mono', monospace;
             -webkit-appearance: none;
         }
-
         .modal .form-group input:focus {
             border-color: var(--accent);
             background: rgba(255, 255, 255, 0.06);
         }
-
         .modal .form-group .helper {
-            font-size: 10px;
+            font-size: 8px;
             color: var(--text-secondary);
-            margin-top: 4px;
+            margin-top: 2px;
         }
-
         .modal .form-group .helper a {
             color: var(--accent);
             text-decoration: none;
         }
-
         .modal .api-status {
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            margin-bottom: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 4px;
         }
-
         .modal .api-status.success {
             background: rgba(34, 197, 94, 0.1);
             color: #4ade80;
@@ -920,23 +1017,65 @@
             color: #a5b4fc;
             border: 1px solid rgba(99, 102, 241, 0.15);
         }
-
         .modal .form-actions {
             display: flex;
-            gap: 8px;
+            gap: 4px;
             justify-content: flex-end;
-            margin-top: 16px;
+            margin-top: 10px;
             flex-wrap: wrap;
         }
-
         .modal .form-actions .btn {
-            padding: 8px 18px;
-            font-size: 12px;
-            min-height: 40px;
+            padding: 4px 12px;
+            font-size: 10px;
+            min-height: 30px;
             justify-content: center;
         }
 
-        /* ===== MODALE NUOVO FILE ===== */
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a2e;
+            color: var(--text-primary);
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            font-size: 10px;
+            z-index: 2000;
+            animation: toastSlide 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            max-width: 90%;
+            backdrop-filter: blur(10px);
+        }
+        @keyframes toastSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        .toast i {
+            color: var(--accent);
+        }
+        .toast.error i {
+            color: #ef4444;
+        }
+        .toast.success i {
+            color: #22c55e;
+        }
+        .toast.warning i {
+            color: #fbbf24;
+        }
+
+        /* ===== MODALE FILE ===== */
         .modal-file-overlay {
             position: fixed;
             inset: 0;
@@ -947,190 +1086,156 @@
             align-items: center;
             justify-content: center;
             z-index: 100;
-            padding: 20px;
+            padding: 16px;
         }
-
         .modal-file-overlay.active {
             display: flex;
         }
-
         .modal-file {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 14px;
             width: 100%;
-            max-width: 350px;
+            max-width: 300px;
             box-shadow: var(--shadow);
             animation: modalSlide 0.3s ease;
         }
-
         .modal-file h3 {
-            font-size: 17px;
-            margin-bottom: 4px;
+            font-size: 14px;
+            margin-bottom: 3px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
         }
-
         .modal-file p {
             color: var(--text-secondary);
-            font-size: 12px;
-            margin-bottom: 14px;
-        }
-
-        .modal-file .form-group {
-            margin-bottom: 12px;
-        }
-
-        .modal-file .form-group label {
             font-size: 10px;
+            margin-bottom: 10px;
+        }
+        .modal-file .form-group {
+            margin-bottom: 8px;
+        }
+        .modal-file .form-group label {
+            font-size: 8px;
             font-weight: 600;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.3px;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
-
         .modal-file .form-group input,
         .modal-file .form-group textarea {
             width: 100%;
-            padding: 8px 12px;
+            padding: 5px 8px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 4px;
             color: var(--text-primary);
-            font-size: 13px;
+            font-size: 11px;
             outline: none;
             transition: 0.2s;
-            font-family: var(--font-mono);
+            font-family: 'JetBrains Mono', monospace;
             -webkit-appearance: none;
         }
-
         .modal-file .form-group input:focus,
         .modal-file .form-group textarea:focus {
             border-color: var(--accent);
         }
-
         .modal-file .form-group textarea {
-            min-height: 60px;
+            min-height: 40px;
             resize: vertical;
         }
-
         .modal-file .form-actions {
             display: flex;
-            gap: 8px;
+            gap: 4px;
             justify-content: flex-end;
-            margin-top: 14px;
+            margin-top: 10px;
         }
-
         .modal-file .form-actions .btn {
-            padding: 6px 16px;
-            font-size: 12px;
-            min-height: 36px;
-        }
-
-        /* ===== TOAST ===== */
-        .toast {
-            position: fixed;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1a1a2e;
-            color: var(--text-primary);
-            padding: 10px 18px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow);
-            font-size: 12px;
-            z-index: 2000;
-            animation: toastSlide 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            max-width: 90%;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        @keyframes toastSlide {
-            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-
-        .toast i { color: var(--accent); }
-        .toast.error i { color: #ef4444; }
-        .toast.success i { color: #22c55e; }
-        .toast.warning i { color: #fbbf24; }
-
-        /* ===== SUGGESTION CHIPS ===== */
-        .suggestion-chips {
-            display: flex;
-            gap: 6px;
-            padding: 6px 12px 8px;
-            overflow-x: auto;
-            flex-shrink: 0;
-            background: rgba(10, 10, 18, 0.6);
-            border-top: 1px solid var(--border-color);
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-
-        .suggestion-chips::-webkit-scrollbar {
-            display: none;
-        }
-
-        .chip {
-            padding: 5px 12px;
-            border-radius: 16px;
-            background: rgba(99, 102, 241, 0.1);
-            color: #a5b4fc;
+            padding: 4px 12px;
             font-size: 10px;
-            font-weight: 500;
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.2s;
-            touch-action: manipulation;
-            flex-shrink: 0;
-        }
-
-        .chip:active {
-            transform: scale(0.95);
-            background: rgba(99, 102, 241, 0.2);
-        }
-
-        .chip i {
-            font-size: 9px;
-            margin-right: 3px;
+            min-height: 28px;
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
-            .header { padding: 6px 10px 6px 12px; min-height: 46px; }
-            .logo { font-size: 15px; }
-            .badge { font-size: 7px; padding: 1px 6px; }
-            .btn { font-size: 10px; padding: 4px 10px; }
-            .btn-icon { font-size: 13px; padding: 4px 6px; }
-            .mobile-tab { font-size: 10px; padding: 8px 10px; min-height: 38px; }
-            .chat-input-area textarea { font-size: 13px; padding: 8px 12px; min-height: 36px; }
-            .message { font-size: 12px; padding: 8px 11px; }
-            .message .code-block { font-size: 10.5px; padding: 8px 10px; max-height: 180px; }
-            .code-editor { font-size: 11px; padding: 8px 10px; }
-            .editor-line-numbers { font-size: 10px; min-width: 26px; padding: 8px 4px 8px 8px; }
-            .modal { padding: 18px 16px; }
-        }
-
-        @media (max-width: 380px) {
-            .logo { font-size: 13px; }
-            .badge-group .badge { display: none; }
-            .badge-group .badge-purple { display: inline-block; font-size: 6px; padding: 1px 5px; }
-            .header-actions .btn span { display: none; }
+            .header {
+                padding: 3px 6px;
+                min-height: 36px;
+            }
+            .logo {
+                font-size: 12px;
+            }
+            .badge {
+                font-size: 5px;
+                padding: 1px 4px;
+            }
+            .btn {
+                font-size: 8px;
+                padding: 2px 6px;
+            }
+            .mobile-tab {
+                font-size: 8px;
+                padding: 4px 8px;
+                min-height: 28px;
+            }
+            .chat-input-area textarea {
+                font-size: 11px;
+                padding: 4px 8px;
+                min-height: 28px;
+            }
+            .message {
+                font-size: 10px;
+                padding: 4px 8px;
+            }
+            .message .code-block {
+                font-size: 8.5px;
+                padding: 4px 6px;
+                max-height: 120px;
+            }
+            .code-editor {
+                font-size: 9px;
+                padding: 4px 8px;
+            }
+            .editor-line-numbers {
+                font-size: 8px;
+                min-width: 18px;
+                padding: 4px 2px 4px 4px;
+            }
+            .modal {
+                padding: 12px;
+            }
+            .agent-bar .step {
+                font-size: 7px;
+            }
+            .agent-bar .step .num {
+                width: 12px;
+                height: 12px;
+                font-size: 6px;
+            }
+            .visual-toolbar .tool-btn {
+                font-size: 7px;
+                padding: 1px 6px;
+            }
+            .visual-toolbar .element-info {
+                font-size: 7px;
+                max-width: 80px;
+            }
+            .suggestion-chips {
+                padding: 2px 6px 3px;
+            }
+            .chip {
+                font-size: 7px;
+                padding: 2px 6px;
+            }
         }
 
         @media (min-width: 768px) {
-            .mobile-tabs { display: none; }
+            .mobile-tabs {
+                display: none;
+            }
             .panels-container {
                 display: flex;
                 flex-direction: row;
@@ -1141,1255 +1246,1360 @@
                 flex: 1;
                 animation: none;
             }
-            .panel.chat-panel { flex: 0 0 340px; }
-            .panel.editor-panel { flex: 1; }
-            .panel.preview-panel { flex: 1; }
-            .main-body .mobile-tabs { display: none; }
+            .panel.chat-panel {
+                flex: 0 0 300px;
+            }
+            .panel.editor-panel {
+                flex: 1;
+            }
+            .panel.preview-panel {
+                flex: 1;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="app-container">
-    <!-- ===== HEADER ===== -->
-    <header class="header">
-        <div class="header-left">
-            <div class="logo">
-                <i class="fas fa-cubes"></i> AppForge
-            </div>
+    <div class="app-container">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="logo"><i class="fas fa-cubes"></i> Lovable Pro</div>
             <div class="badge-group">
-                <span class="badge badge-purple"><i class="fas fa-bolt"></i> AI</span>
-                <span class="badge badge-red" id="apiStatusBadge" title="Configura API">
-                    <i class="fas fa-key"></i> <span id="apiStatusText">⚡</span>
-                </span>
+                <span class="badge badge-purple"><i class="fas fa-robot"></i> Agent</span>
+                <span class="badge badge-yellow"><i class="fas fa-circle" style="color:#22c55e;font-size:5px;"></i> Live</span>
+                <span class="badge badge-red" id="apiStatusBadge"><i class="fas fa-key"></i> <span id="apiStatusText">⚡</span></span>
             </div>
-        </div>
-        <div class="header-actions">
-            <button class="btn-icon" id="resetBtn" title="Nuova conversazione"><i class="fas fa-plus"></i></button>
-            <button class="btn btn-primary" id="runBtn"><i class="fas fa-play"></i> <span>Esegui</span></button>
-            <button class="btn-icon" id="exportBtn" title="Esporta"><i class="fas fa-download"></i></button>
-        </div>
-    </header>
+            <div style="display:flex;gap:3px;">
+                <button class="btn btn-primary" id="runBtn"><i class="fas fa-play"></i></button>
+                <button class="btn-icon" id="resetBtn"><i class="fas fa-plus"></i></button>
+            </div>
+        </header>
 
-    <!-- ===== MAIN BODY ===== -->
-    <div class="main-body">
+        <!-- AGENT STATUS BAR -->
+        <div class="agent-bar" id="agentBar">
+            <div class="step active" data-step="plan"><span class="num">1</span> Piano <span class="arrow">→</span></div>
+            <div class="step" data-step="code"><span class="num">2</span> Genera <span class="arrow">→</span></div>
+            <div class="step" data-step="db"><span class="num">3</span> Database <span class="arrow">→</span></div>
+            <div class="step" data-step="deploy"><span class="num">4</span> Deploy</div>
+        </div>
 
-        <!-- ===== TAB MOBILE ===== -->
+        <!-- VISUAL EDITOR TOOLBAR -->
+        <div class="visual-toolbar" id="visualToolbar">
+            <button class="tool-btn active" data-tool="select"><i class="fas fa-mouse-pointer"></i> Seleziona</button>
+            <button class="tool-btn" data-tool="edit"><i class="fas fa-pen"></i> Modifica</button>
+            <button class="tool-btn" data-tool="add"><i class="fas fa-plus-circle"></i> Aggiungi</button>
+            <button class="tool-btn" data-tool="delete"><i class="fas fa-trash"></i> Elimina</button>
+            <span class="element-info" id="elementInfo">📦 Nessun elemento selezionato</span>
+        </div>
+
+        <!-- MOBILE TABS -->
         <div class="mobile-tabs" id="mobileTabs">
-            <div class="mobile-tab active" data-panel="chat"><i class="fas fa-comment"></i> Chat <span class="tab-badge">AI</span></div>
+            <div class="mobile-tab active" data-panel="chat"><i class="fas fa-comment"></i> Chat</div>
             <div class="mobile-tab" data-panel="editor"><i class="fas fa-code"></i> Codice</div>
             <div class="mobile-tab" data-panel="preview"><i class="fas fa-eye"></i> Preview</div>
         </div>
 
-        <!-- ===== PANELS CONTAINER ===== -->
+        <!-- PANELS -->
         <div class="panels-container">
 
-            <!-- ===== PANEL CHAT ===== -->
+            <!-- CHAT -->
             <div class="panel chat-panel active" id="panelChat">
                 <div class="chat-header">
-                    <span><span class="status-dot" id="statusDot"></span> Assistente AI</span>
-                    <span style="font-size:9px; color:#4a4a5a;">
-                        <i class="fas fa-database"></i> <span id="tokenCount">0</span> token
-                    </span>
+                    <span><span class="status-dot" id="statusDot"></span> Assistente</span>
+                    <span style="font-size:7px;color:#4a4a5a;"><i class="fas fa-database"></i> <span id="tokenCount">0</span></span>
                 </div>
                 <div class="chat-messages" id="chatMessages">
                     <div class="message assistant">
                         <div class="role-label">🤖 Assistente</div>
-                        <strong>👋 Ciao! Sono il tuo assistente AI.</strong><br/>
-                        <span id="welcomeMessage">Descrivimi cosa vuoi creare!</span><br/><br/>
-                        <em style="font-size:12px;">Esempi:</em><br/>
-                        <span style="font-size:12px;">• "Crea un timer con start/stop/reset"</span><br/>
-                        <span style="font-size:12px;">• "Fai una todo list con salvataggio"</span>
+                        <strong>👋 Ciao! Descrivimi la tua app full-stack.</strong><br/>
+                        <span id="welcomeMessage">Esempi: app con login, dashboard, database...</span>
                     </div>
                 </div>
-
-                <!-- Suggestion Chips -->
                 <div class="suggestion-chips" id="suggestionChips">
-                    <span class="chip" data-prompt="Crea un timer con start, stop e reset"><i class="fas fa-clock"></i> Timer</span>
-                    <span class="chip" data-prompt="Fai una todo list con localStorage"><i class="fas fa-list"></i> Todo List</span>
-                    <span class="chip" data-prompt="Genera una calcolatrice con operazioni base"><i class="fas fa-calculator"></i> Calcolatrice</span>
-                    <span class="chip" data-prompt="Crea un'app meteo con ricerca città"><i class="fas fa-cloud-sun"></i> Meteo</span>
-                    <span class="chip" data-prompt="Fai un generatore di password casuali"><i class="fas fa-key"></i> Password</span>
+                    <span class="chip" data-prompt="Crea un'app di gestione progetti con React, Supabase e autenticazione"><i class="fas fa-project-diagram"></i> Project Mgmt</span>
+                    <span class="chip" data-prompt="Fai una dashboard con dati in tempo reale e grafici"><i class="fas fa-chart-line"></i> Dashboard</span>
+                    <span class="chip" data-prompt="Genera un app di e-commerce con carrello e checkout"><i class="fas fa-shopping-cart"></i> E-commerce</span>
+                    <span class="chip" data-prompt="Crea un social feed con like e commenti"><i class="fas fa-users"></i> Social</span>
                 </div>
-
                 <div class="chat-input-area">
-                    <textarea id="promptInput" rows="1" placeholder="Descrivi la tua app..."></textarea>
+                    <textarea id="promptInput" rows="1" placeholder="Descrivi la tua app full-stack..."></textarea>
                     <button class="btn-send" id="sendBtn"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
 
-            <!-- ===== PANEL EDITOR ===== -->
+            <!-- EDITOR -->
             <div class="panel editor-panel" id="panelEditor">
                 <div class="file-tabs" id="fileTabs">
-                    <div class="file-tab active" data-file="index.html">
-                        <span class="file-icon html"><i class="fab fa-html5"></i></span>
-                        index.html
-                    </div>
-                    <div class="file-tab" data-file="style.css">
-                        <span class="file-icon css"><i class="fab fa-css3-alt"></i></span>
-                        style.css
-                    </div>
-                    <div class="file-tab" data-file="script.js">
-                        <span class="file-icon js"><i class="fab fa-js"></i></span>
-                        script.js
-                    </div>
+                    <div class="file-tab active" data-file="App.jsx"><span class="file-icon react"><i class="fab fa-react"></i></span> App.jsx</div>
+                    <div class="file-tab" data-file="index.css"><span class="file-icon css"><i class="fab fa-css3-alt"></i></span> index.css</div>
+                    <div class="file-tab" data-file="supabase.js"><span class="file-icon js"><i class="fas fa-database"></i></span> supabase.js</div>
                     <button class="add-file-btn" id="addFileBtn"><i class="fas fa-plus"></i></button>
                 </div>
-
                 <div class="editor-container">
                     <div class="editor-with-numbers">
                         <div class="editor-line-numbers" id="lineNumbers">1</div>
                         <div class="code-editor" id="codeEditor" contenteditable="true" spellcheck="false"></div>
                     </div>
                 </div>
-
-                <!-- Live Status Bar -->
                 <div class="live-status-bar">
-                    <div class="status-text">
-                        <span class="pulse" id="livePulse"></span>
-                        <span id="liveStatusText">⏳ In attesa...</span>
-                    </div>
-                    <div class="file-count">
-                        <i class="fas fa-files"></i> <span id="fileCount">3</span>
-                    </div>
+                    <div class="status-text"><span class="pulse" id="livePulse"></span><span id="liveStatusText">⏳ In attesa...</span></div>
+                    <div class="file-count"><i class="fas fa-files"></i> <span id="fileCount">3</span></div>
                 </div>
             </div>
 
-            <!-- ===== PANEL PREVIEW ===== -->
+            <!-- PREVIEW -->
             <div class="panel preview-panel" id="panelPreview">
                 <div class="preview-header">
                     <span><span class="dot" id="previewDot"></span> Anteprima</span>
-                    <div class="url-bar">
-                        <i class="fas fa-link" style="font-size:8px;"></i>
-                        <span id="previewUrl">localhost</span>
-                    </div>
+                    <div class="url-bar"><i class="fas fa-link" style="font-size:6px;"></i> <span id="previewUrl">localhost</span></div>
                 </div>
                 <div class="preview-frame" id="previewFrame">
-                    <div class="empty-preview">
-                        <i class="fas fa-mobile-alt"></i>
-                        <span>Anteprima live</span>
-                        <span>Genera codice per vedere il risultato</span>
+                    <div class="empty-preview"><i class="fas fa-mobile-alt"></i><span>Anteprima live</span><span>Genera codice per vedere il risultato</span></div>
+                    <!-- Selection Overlay per Visual Editor -->
+                    <div class="selection-overlay" id="selectionOverlay">
+                        <div class="hover-box" id="hoverBox">
+                            <span class="label" id="hoverLabel">Elemento</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-</div>
 
-<!-- ===== MODALE CONFIGURAZIONE API ===== -->
-<div class="modal-overlay" id="apiModal">
-    <div class="modal">
-        <h2><i class="fas fa-key" style="color:var(--accent);"></i> Configura API</h2>
-        <p>Inserisci la tua chiave DeepSeek per generare codice AI.</p>
-        <div class="api-status info" id="apiStatus">
-            <i class="fas fa-info-circle"></i>
-            <span>Nessuna chiave configurata</span>
-        </div>
-        <div class="form-group">
-            <label>🔑 DeepSeek API Key</label>
-            <input type="password" id="apiKeyInput" placeholder="sk-..." />
-            <div class="helper">
-                <i class="fas fa-info-circle"></i>
-                <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a> (gratis)
+    <!-- MODALE API -->
+    <div class="modal-overlay" id="apiModal">
+        <div class="modal">
+            <h2><i class="fas fa-key" style="color:var(--accent);"></i> Configura API</h2>
+            <p>Inserisci la chiave DeepSeek per generare codice full-stack.</p>
+            <div class="api-status info" id="apiStatus"><i class="fas fa-info-circle"></i><span>Nessuna chiave configurata</span></div>
+            <div class="form-group">
+                <label>🔑 DeepSeek API Key</label>
+                <input type="password" id="apiKeyInput" placeholder="sk-..." />
+                <div class="helper"><i class="fas fa-info-circle"></i> <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a> (gratis)</div>
+            </div>
+            <div class="form-actions">
+                <button class="btn" id="apiModalCancel">Annulla</button>
+                <button class="btn" id="apiTestBtn"><i class="fas fa-vial"></i> Test</button>
+                <button class="btn btn-primary" id="apiModalSave"><i class="fas fa-save"></i> Salva</button>
             </div>
         </div>
-        <div class="form-group">
-            <label>🌐 Endpoint</label>
-            <input type="text" id="apiEndpointInput" value="https://api.deepseek.com/v1/chat/completions" />
-        </div>
-        <div class="form-actions">
-            <button class="btn" id="apiModalCancel">Annulla</button>
-            <button class="btn" id="apiTestBtn"><i class="fas fa-vial"></i> Test</button>
-            <button class="btn btn-primary" id="apiModalSave"><i class="fas fa-save"></i> Salva</button>
+    </div>
+
+    <!-- MODALE FILE -->
+    <div class="modal-file-overlay" id="modalFileOverlay">
+        <div class="modal-file">
+            <h3><i class="fas fa-file-code" style="color:var(--accent);"></i> Nuovo file</h3>
+            <p>Aggiungi un nuovo file al progetto</p>
+            <div class="form-group"><label>Nome file</label><input type="text" id="newFileName" placeholder="es: App.jsx" /></div>
+            <div class="form-group"><label>Contenuto</label><textarea id="newFileContent" placeholder="// Il tuo codice qui..."></textarea></div>
+            <div class="form-actions"><button class="btn" id="modalFileCancel">Annulla</button><button class="btn btn-primary" id="modalFileConfirm">Aggiungi</button></div>
         </div>
     </div>
-</div>
 
-<!-- ===== MODALE NUOVO FILE ===== -->
-<div class="modal-file-overlay" id="modalFileOverlay">
-    <div class="modal-file">
-        <h3><i class="fas fa-file-code" style="color:var(--accent);"></i> Nuovo file</h3>
-        <p>Aggiungi un nuovo file al progetto</p>
-        <div class="form-group">
-            <label>Nome file</label>
-            <input type="text" id="newFileName" placeholder="es: app.js" />
-        </div>
-        <div class="form-group">
-            <label>Contenuto</label>
-            <textarea id="newFileContent" placeholder="// Il tuo codice qui..."></textarea>
-        </div>
-        <div class="form-actions">
-            <button class="btn" id="modalFileCancel">Annulla</button>
-            <button class="btn btn-primary" id="modalFileConfirm">Aggiungi</button>
-        </div>
-    </div>
-</div>
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js">
+    </script>
+    <script>
+        (function() {
+            'use strict';
 
-<!-- SCRIPTS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
-<script>
-    (function() {
-        'use strict';
+            // ============================
+            //  API CONFIG
+            // ============================
+            function getApiKey() { return sessionStorage.getItem('deepseek_api_key') || ''; }
 
-        // ============================
-        //  API CONFIG
-        // ============================
-        function getApiKey() {
-            return sessionStorage.getItem('deepseek_api_key') || '';
-        }
+            function setApiKey(key) { sessionStorage.setItem('deepseek_api_key', key);
+                updateApiStatus(); }
 
-        function setApiKey(key) {
-            sessionStorage.setItem('deepseek_api_key', key);
-            updateApiStatus();
-        }
+            function hasValidApiKey() { const key = getApiKey(); return key && key.startsWith('sk-') && key.length >
+                    10; }
 
-        function getApiEndpoint() {
-            return sessionStorage.getItem('deepseek_api_endpoint') || 'https://api.deepseek.com/v1/chat/completions';
-        }
+            // ============================
+            //  STATE
+            // ============================
+            const state = {
+                files: {
+                    'App.jsx': `import React, { useState, useEffect } from 'react';
+        import { createClient } from '@supabase/supabase-js';
+        import './index.css';
 
-        function setApiEndpoint(endpoint) {
-            sessionStorage.setItem('deepseek_api_endpoint', endpoint);
-        }
+        const supabase = createClient(
+          'https://your-project.supabase.co',
+          'your-anon-key'
+        );
 
-        function hasValidApiKey() {
-            const key = getApiKey();
-            return key && key.startsWith('sk-') && key.length > 10;
-        }
+        function App() {
+          const [todos, setTodos] = useState([]);
+          const [input, setInput] = useState('');
 
-        // ============================
-        //  STATE
-        // ============================
-        const state = {
-            files: {
-                'index.html': `<!DOCTYPE html>
-        <html lang="it">
-        <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AppForge</title><link rel="stylesheet" href="style.css"></head>
-        <body>
-            <div id="app">
-                <h1>✨ Ciao, mondo!</h1>
-                <p>Questa app è stata generata con AppForge.</p>
-                <button id="btnClick">Cliccami</button>
+          useEffect(() => {
+            fetchTodos();
+          }, []);
+
+          async function fetchTodos() {
+            const { data, error } = await supabase
+              .from('todos')
+              .select('*')
+              .order('created_at', { ascending: false });
+            if (error) console.error(error);
+            else setTodos(data || []);
+          }
+
+          async function addTodo() {
+            if (!input.trim()) return;
+            const { data, error } = await supabase
+              .from('todos')
+              .insert({ task: input })
+              .select();
+            if (error) console.error(error);
+            else { setTodos([data[0], ...todos]); setInput(''); }
+          }
+
+          return (
+            <div className="container">
+              <h1>📋 Todo List</h1>
+              <div className="input-group">
+                <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Nuovo todo..." />
+                <button onClick={addTodo}>➕ Aggiungi</button>
+              </div>
+              <ul>
+                {todos.map(todo => (
+                  <li key={todo.id}>{todo.task}</li>
+                ))}
+              </ul>
             </div>
-            <script src="script.js"><\/script>
-        </body>
-        </html>`,
-                'style.css': `*{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:system-ui;display:flex;justify-content:center;align-items:center;min-height:100vh;background:linear-gradient(135deg,#f0f0f5,#e8e8f0);margin:0}
-        #app{background:white;padding:40px 48px;border-radius:28px;box-shadow:0 20px 60px rgba(0,0,0,0.08);text-align:center;max-width:500px;transition:transform 0.3s}
-        #app:hover{transform:translateY(-4px)}
-        h1{color:#1a1a2e;font-size:26px;margin-bottom:10px}
-        p{color:#4a4a5a;font-size:15px;margin-bottom:20px}
-        button{padding:12px 28px;border:none;border-radius:14px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;font-weight:600;font-size:15px;cursor:pointer;transition:0.25s;box-shadow:0 4px 16px rgba(99,102,241,0.25)}
-        button:hover{transform:scale(1.04);box-shadow:0 8px 30px rgba(99,102,241,0.35)}`,
-                'script.js': `document.addEventListener('DOMContentLoaded',()=>{
-        const btn=document.getElementById('btnClick');
-        const app=document.getElementById('app');
-        if(btn){
-        btn.addEventListener('click',()=>{
-        const msg=document.createElement('p');
-        msg.textContent='👋 Ciao da AppForge!';
-        msg.style.cssText='color:#6366f1;font-weight:500;margin-top:12px';
-        app.appendChild(msg);
-        app.style.transform='scale(0.98)';
-        setTimeout(()=>app.style.transform='scale(1)',150);
-        });
+          );
         }
-        console.log('✅ AppForge caricata!');
-        });`
-            },
-            activeFile: 'index.html',
-            conversationHistory: [
-                { role: 'system', content: `Sei un assistente esperto in sviluppo web. Genera codice HTML, CSS e JavaScript di alta qualità.
+
+        export default App;`,
+                    'index.css': `* { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui; background: #f0f0f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.08); width: 100%; max-width: 400px; }
+        h1 { color: #1a1a2e; margin-bottom: 16px; }
+        .input-group { display: flex; gap: 8px; margin-bottom: 16px; }
+        .input-group input { flex: 1; padding: 10px 14px; border: 2px solid #e0e0e8; border-radius: 10px; font-size: 14px; outline: none; }
+        .input-group input:focus { border-color: #6366f1; }
+        .input-group button { padding: 10px 18px; border: none; border-radius: 10px; background: #6366f1; color: white; font-size: 16px; cursor: pointer; }
+        .input-group button:hover { background: #4f46e5; }
+        ul { list-style: none; padding: 0; }
+        li { padding: 10px 12px; border-bottom: 1px solid #f0f0f5; }`,
+                    'supabase.js': `import { createClient } from '@supabase/supabase-js';
+
+        const supabaseUrl = 'https://your-project.supabase.co';
+        const supabaseKey = 'your-anon-key';
+
+        export const supabase = createClient(supabaseUrl, supabaseKey);`
+                },
+                activeFile: 'App.jsx',
+                conversationHistory: [
+                    { role: 'system', content: `Sei un assistente esperto in sviluppo full-stack React + Supabase.
+
+        STACK TECNOLOGICO (FISSO):
+        - Frontend: React 18 + Vite + Tailwind CSS
+        - Backend/Database: Supabase (PostgreSQL)
+        - Linguaggio: JavaScript/JSX
 
         REGOLE:
-        1. Restituisci il codice in blocchi markdown con triple backtick.
-        2. Organizza il codice in HTML, CSS e JavaScript separati.
-        3. Usa design moderno, pulito e responsive per mobile.
-        4. Aggiungi commenti utili.
+        1. Genera codice React con componenti funzionali e hooks.
+        2. Usa Supabase per database e autenticazione.
+        3. Organizza il codice in file separati: App.jsx, index.css, supabase.js.
+        4. Usa design moderno e responsive.
         5. Assicurati che il codice sia funzionante.
 
-        Formato:
-        \`\`\`html
-        <!-- index.html -->
-        <!DOCTYPE html>...
+        Formato risposta con blocchi markdown:
+        \`\`\`jsx
+        // App.jsx
+        import React...
         \`\`\`
         \`\`\`css
-        /* style.css */
+        /* index.css */
         ...
         \`\`\`
         \`\`\`js
-        // script.js
+        // supabase.js
         ...
         \`\`\`` }
-            ],
-            isGenerating: false,
-            tokenCount: 0,
-            panelActive: 'chat'
-        };
-
-        // ============================
-        //  DOM REFS
-        // ============================
-        const chatMessages = document.getElementById('chatMessages');
-        const promptInput = document.getElementById('promptInput');
-        const sendBtn = document.getElementById('sendBtn');
-        const codeEditor = document.getElementById('codeEditor');
-        const lineNumbers = document.getElementById('lineNumbers');
-        const previewFrame = document.getElementById('previewFrame');
-        const fileTabs = document.getElementById('fileTabs');
-        const runBtn = document.getElementById('runBtn');
-        const resetBtn = document.getElementById('resetBtn');
-        const exportBtn = document.getElementById('exportBtn');
-        const addFileBtn = document.getElementById('addFileBtn');
-        const modalFileOverlay = document.getElementById('modalFileOverlay');
-        const newFileName = document.getElementById('newFileName');
-        const newFileContent = document.getElementById('newFileContent');
-        const modalFileConfirm = document.getElementById('modalFileConfirm');
-        const modalFileCancel = document.getElementById('modalFileCancel');
-        const tokenSpan = document.getElementById('tokenCount');
-        const statusDot = document.getElementById('statusDot');
-        const apiStatusBadge = document.getElementById('apiStatusBadge');
-        const apiStatusText = document.getElementById('apiStatusText');
-        const welcomeMessage = document.getElementById('welcomeMessage');
-        const liveStatusText = document.getElementById('liveStatusText');
-        const livePulse = document.getElementById('livePulse');
-        const fileCount = document.getElementById('fileCount');
-        const previewDot = document.getElementById('previewDot');
-        const previewUrl = document.getElementById('previewUrl');
-        const mobileTabs = document.getElementById('mobileTabs');
-
-        const apiModal = document.getElementById('apiModal');
-        const apiKeyInput = document.getElementById('apiKeyInput');
-        const apiEndpointInput = document.getElementById('apiEndpointInput');
-        const apiModalSave = document.getElementById('apiModalSave');
-        const apiModalCancel = document.getElementById('apiModalCancel');
-        const apiTestBtn = document.getElementById('apiTestBtn');
-        const apiStatus = document.getElementById('apiStatus');
-
-        const chips = document.querySelectorAll('.chip');
-
-        // ============================
-        //  FUNZIONI UI
-        // ============================
-
-        function updateApiStatus() {
-            const hasKey = hasValidApiKey();
-            if (hasKey) {
-                const key = getApiKey();
-                const masked = key.substring(0, 6) + '...' + key.substring(key.length - 3);
-                apiStatusText.textContent = '🔑';
-                apiStatusBadge.className = 'badge badge-green';
-                statusDot.className = 'status-dot';
-                welcomeMessage.textContent = '✅ API configurata! Pronto a generare.';
-                apiStatus.className = 'api-status success';
-                apiStatus.innerHTML = `<i class="fas fa-check-circle"></i> <span>API configurata</span>`;
-                apiKeyInput.value = key;
-                apiEndpointInput.value = getApiEndpoint();
-            } else {
-                apiStatusText.textContent = '⚡';
-                apiStatusBadge.className = 'badge badge-red';
-                statusDot.className = 'status-dot offline';
-                welcomeMessage.textContent = '⚠️ Configura la chiave API cliccando su ⚡';
-                apiStatus.className = 'api-status info';
-                apiStatus.innerHTML = `<i class="fas fa-info-circle"></i> <span>Nessuna chiave configurata</span>`;
-            }
-        }
-
-        function setLiveStatus(text, type = 'idle') {
-            liveStatusText.textContent = text;
-            livePulse.className = 'pulse';
-            if (type === 'generating') {
-                livePulse.classList.add('generating');
-                previewDot.className = 'dot generating';
-                statusDot.className = 'status-dot generating';
-            } else if (type === 'error') {
-                livePulse.classList.add('error');
-                previewDot.className = 'dot error';
-                statusDot.className = 'status-dot offline';
-            } else {
-                livePulse.classList.remove('generating', 'error');
-                previewDot.className = 'dot';
-                statusDot.className = 'status-dot';
-            }
-        }
-
-        function updateFileCount() {
-            fileCount.textContent = Object.keys(state.files).length;
-        }
-
-        function showToast(message, type = 'info') {
-            const existing = document.querySelector('.toast');
-            if (existing) existing.remove();
-
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            const icons = {
-                error: 'fa-exclamation-circle',
-                success: 'fa-check-circle',
-                warning: 'fa-triangle-exclamation',
-                info: 'fa-info-circle'
+                ],
+                isGenerating: false,
+                tokenCount: 0,
+                agentStep: 0,
+                selectedTool: 'select',
+                selectedElement: null
             };
-            toast.innerHTML = `<i class="fas ${icons[type] || icons.info}"></i> ${message}`;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 2800);
-        }
 
-        function updateEditor() {
-            const content = state.files[state.activeFile] || '';
-            codeEditor.innerText = content;
-            updateLineNumbers();
-            Prism.highlightElement(codeEditor);
-        }
+            // ============================
+            //  DOM REFS
+            // ============================
+            const chatMessages = document.getElementById('chatMessages');
+            const promptInput = document.getElementById('promptInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const codeEditor = document.getElementById('codeEditor');
+            const lineNumbers = document.getElementById('lineNumbers');
+            const previewFrame = document.getElementById('previewFrame');
+            const fileTabs = document.getElementById('fileTabs');
+            const runBtn = document.getElementById('runBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const addFileBtn = document.getElementById('addFileBtn');
+            const modalFileOverlay = document.getElementById('modalFileOverlay');
+            const newFileName = document.getElementById('newFileName');
+            const newFileContent = document.getElementById('newFileContent');
+            const modalFileConfirm = document.getElementById('modalFileConfirm');
+            const modalFileCancel = document.getElementById('modalFileCancel');
+            const tokenSpan = document.getElementById('tokenCount');
+            const statusDot = document.getElementById('statusDot');
+            const apiStatusBadge = document.getElementById('apiStatusBadge');
+            const apiStatusText = document.getElementById('apiStatusText');
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            const liveStatusText = document.getElementById('liveStatusText');
+            const livePulse = document.getElementById('livePulse');
+            const fileCount = document.getElementById('fileCount');
+            const previewDot = document.getElementById('previewDot');
+            const previewUrl = document.getElementById('previewUrl');
+            const mobileTabs = document.getElementById('mobileTabs');
+            const agentSteps = document.querySelectorAll('.agent-bar .step');
+            const elementInfo = document.getElementById('elementInfo');
+            const hoverBox = document.getElementById('hoverBox');
+            const hoverLabel = document.getElementById('hoverLabel');
+            const selectionOverlay = document.getElementById('selectionOverlay');
+            const toolBtns = document.querySelectorAll('.tool-btn');
 
-        function updateLineNumbers() {
-            const content = codeEditor.innerText;
-            const lines = content.split('\n').length;
-            let nums = '';
-            for (let i = 1; i <= lines; i++) {
-                nums += i + '\n';
-            }
-            lineNumbers.textContent = nums;
-        }
+            const apiModal = document.getElementById('apiModal');
+            const apiKeyInput = document.getElementById('apiKeyInput');
+            const apiModalSave = document.getElementById('apiModalSave');
+            const apiModalCancel = document.getElementById('apiModalCancel');
+            const apiTestBtn = document.getElementById('apiTestBtn');
+            const apiStatus = document.getElementById('apiStatus');
+            const chips = document.querySelectorAll('.chip');
 
-        function updateFileTabs() {
-            const currentFiles = Object.keys(state.files);
-            const tabsContainer = fileTabs;
-            const existingTabs = tabsContainer.querySelectorAll('.file-tab');
-            existingTabs.forEach(tab => {
-                const filename = tab.dataset.file;
-                if (!state.files[filename]) {
-                    tab.remove();
-                }
-            });
+            // ============================
+            //  VISUAL EDITOR
+            // ============================
 
-            currentFiles.forEach(filename => {
-                let tab = tabsContainer.querySelector(`.file-tab[data-file="${filename}"]`);
-                if (!tab) {
-                    tab = document.createElement('div');
-                    tab.className = 'file-tab';
-                    tab.dataset.file = filename;
-                    const icon = getFileIcon(filename);
-                    tab.innerHTML = `
-                        <span class="file-icon ${icon.class}">${icon.html}</span>
-                        ${filename}
-                        <button class="close-btn" data-file="${filename}"><i class="fas fa-times"></i></button>
-                    `;
-                    const addBtn = tabsContainer.querySelector('.add-file-btn');
-                    tabsContainer.insertBefore(tab, addBtn);
-                    tab.addEventListener('click', () => switchFile(filename));
-                    tab.querySelector('.close-btn').addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        deleteFile(filename);
-                    });
-                }
-                tab.classList.toggle('active', filename === state.activeFile);
-            });
-            updateFileCount();
-        }
-
-        function getFileIcon(filename) {
-            if (filename.endsWith('.html')) return { class: 'html', html: '<i class="fab fa-html5"></i>' };
-            if (filename.endsWith('.css')) return { class: 'css', html: '<i class="fab fa-css3-alt"></i>' };
-            if (filename.endsWith('.js')) return { class: 'js', html: '<i class="fab fa-js"></i>' };
-            return { class: '', html: '<i class="fas fa-file"></i>' };
-        }
-
-        function switchFile(filename) {
-            if (!state.files[filename]) return;
-            const content = codeEditor.innerText;
-            if (state.files[state.activeFile] !== undefined) {
-                state.files[state.activeFile] = content;
-            }
-            state.activeFile = filename;
-            updateEditor();
-            updateFileTabs();
-            updatePreview();
-        }
-
-        function deleteFile(filename) {
-            if (Object.keys(state.files).length <= 1) {
-                showToast('Non puoi eliminare l\'ultimo file', 'error');
-                return;
-            }
-            if (filename === 'index.html') {
-                showToast('Non puoi eliminare index.html', 'error');
-                return;
-            }
-            delete state.files[filename];
-            if (state.activeFile === filename) {
-                state.activeFile = Object.keys(state.files)[0];
-            }
-            updateFileTabs();
-            updateEditor();
-            updatePreview();
-            showToast(`File ${filename} eliminato`, 'success');
-        }
-
-        function addFile(filename, content = '') {
-            if (state.files[filename]) {
-                showToast('File già esistente', 'error');
-                return false;
-            }
-            state.files[filename] = content || `/* ${filename} */\n\n`;
-            state.activeFile = filename;
-            updateFileTabs();
-            updateEditor();
-            updatePreview();
-            showToast(`File ${filename} creato`, 'success');
-            return true;
-        }
-
-        function updatePreview() {
-            const htmlContent = state.files['index.html'] || '';
-            let fullHtml = htmlContent;
-
-            const cssContent = state.files['style.css'] || '';
-            if (cssContent) {
-                const styleTag = `<style>/* style.css */\n${cssContent}\n</style>`;
-                fullHtml = fullHtml.replace(/<link[^>]*style\.css[^>]*>/gi, '');
-                fullHtml = fullHtml.replace('</head>', `${styleTag}</head>`);
-            }
-
-            const jsContent = state.files['script.js'] || '';
-            if (jsContent) {
-                const scriptTag = `<script>/* script.js */\n${jsContent}\n<\/script>`;
-                fullHtml = fullHtml.replace(/<script[^>]*script\.js[^>]*><\/script>/gi, '');
-                fullHtml = fullHtml.replace('</body>', `${scriptTag}</body>`);
-            }
-
-            const container = previewFrame;
-            if (!fullHtml || fullHtml.trim() === '') {
-                container.innerHTML = `
-                    <div class="empty-preview">
-                        <i class="fas fa-mobile-alt"></i>
-                        <span>Nessun codice</span>
-                        <span>Crea o modifica index.html</span>
-                    </div>
-                `;
-                return;
-            }
-
-            let iframe = container.querySelector('iframe');
-            if (!iframe) {
-                iframe = document.createElement('iframe');
-                iframe.setAttribute('sandbox', 'allow-scripts allow-modals allow-same-origin');
-                container.innerHTML = '';
-                container.appendChild(iframe);
-            }
-            try {
-                const doc = iframe.contentDocument || iframe.contentWindow.document;
-                doc.open();
-                doc.write(fullHtml);
-                doc.close();
-                previewUrl.textContent = 'localhost ✓';
-            } catch (e) {
-                console.warn('Preview error:', e);
-                previewUrl.textContent = '⚠️ errore';
-            }
-        }
-
-        // ===== PANEL NAVIGATION =====
-        function switchPanel(panelId) {
-            state.panelActive = panelId;
-            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-            document.getElementById('panel' + panelId.charAt(0).toUpperCase() + panelId.slice(1)).classList.add('active');
-            document.querySelectorAll('.mobile-tab').forEach(t => {
-                t.classList.toggle('active', t.dataset.panel === panelId);
-            });
-            if (panelId === 'preview') updatePreview();
-        }
-
-        mobileTabs.addEventListener('click', (e) => {
-            const tab = e.target.closest('.mobile-tab');
-            if (tab) switchPanel(tab.dataset.panel);
-        });
-
-        // ============================
-        //  FUNZIONI CHAT
-        // ============================
-
-        function addMessage(role, content, codeBlocks = null, status = null) {
-            const div = document.createElement('div');
-            div.className = `message ${role}`;
-
-            const label = document.createElement('div');
-            label.className = `role-label ${role === 'user' ? 'user-label' : ''}`;
-            label.innerHTML = role === 'user' ? '👤 Tu' : '🤖 Assistente';
-            div.appendChild(label);
-
-            if (status) {
-                const statusDiv = document.createElement('div');
-                statusDiv.className = 'status-message';
-                statusDiv.innerHTML = status;
-                div.appendChild(statusDiv);
-            }
-
-            if (codeBlocks) {
-                for (const [filename, code] of Object.entries(codeBlocks)) {
-                    const pre = document.createElement('pre');
-                    pre.className = 'code-block';
-                    const fileLabel = document.createElement('div');
-                    fileLabel.className = 'file-label';
-                    fileLabel.textContent = `📄 ${filename}`;
-                    pre.appendChild(fileLabel);
-
-                    const codeEl = document.createElement('code');
-                    codeEl.className = 'language-html';
-                    codeEl.textContent = code;
-                    pre.appendChild(codeEl);
-                    div.appendChild(pre);
-                }
-            }
-
-            if (content && typeof content === 'string' && !status) {
-                const textP = document.createElement('p');
-                textP.textContent = content;
-                div.appendChild(textP);
-            }
-
-            chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            Prism.highlightAllUnder(div);
-            return div;
-        }
-
-        function addTypingIndicator() {
-            const div = document.createElement('div');
-            div.className = 'typing-indicator';
-            div.id = 'typingIndicator';
-            for (let i = 0; i < 3; i++) {
-                const span = document.createElement('span');
-                div.appendChild(span);
-            }
-            chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function removeTypingIndicator() {
-            const el = document.getElementById('typingIndicator');
-            if (el) el.remove();
-        }
-
-        function extractCodeBlocks(text) {
-            const blocks = {};
-            const regex = /```(html|css|js|javascript|json|xml)\s*\n([\s\S]*?)```/gi;
-            let match;
-            while ((match = regex.exec(text)) !== null) {
-                const lang = match[1].toLowerCase();
-                let code = match[2].trim();
-                let filename = '';
-                const headerMatch = code.match(/^<!--\s*([\w.-]+)\s*-->\s*/);
-                if (headerMatch) {
-                    filename = headerMatch[1];
-                    code = code.replace(/^<!--\s*[\w.-]+\s*-->\s*/, '');
-                } else if (lang === 'html') {
-                    filename = 'index.html';
-                } else if (lang === 'css') {
-                    filename = 'style.css';
-                } else if (lang === 'js' || lang === 'javascript') {
-                    filename = 'script.js';
-                }
-                if (filename && code) {
-                    blocks[filename] = code;
-                }
-            }
-
-            if (Object.keys(blocks).length === 0) {
-                const genericRegex = /```\s*\n([\s\S]*?)```/g;
-                let gmatch;
-                while ((gmatch = genericRegex.exec(text)) !== null) {
-                    const code = gmatch[1].trim();
-                    if (code.includes('<!DOCTYPE') || code.includes('<html')) {
-                        blocks['index.html'] = code;
-                    } else if (code.includes('{') && code.includes('}') && code.includes(':')) {
-                        blocks['style.css'] = code;
-                    } else if (code.includes('function') || code.includes('=>') || code.includes('const ')) {
-                        blocks['script.js'] = code;
-                    } else {
-                        blocks['code.txt'] = code;
+            // Tool selection
+            toolBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    toolBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    state.selectedTool = this.dataset.tool;
+                    selectionOverlay.classList.toggle('active', state.selectedTool === 'select');
+                    if (state.selectedTool === 'select') {
+                        elementInfo.textContent = '👆 Tocca un elemento per selezionarlo';
+                    } else if (state.selectedTool === 'edit') {
+                        elementInfo.textContent = '✏️ Tocca un elemento per modificarlo via chat';
+                    } else if (state.selectedTool === 'add') {
+                        elementInfo.textContent = '➕ Tocca dove aggiungere un elemento';
+                    } else if (state.selectedTool === 'delete') {
+                        elementInfo.textContent = '🗑️ Tocca un elemento per eliminarlo';
                     }
+                });
+            });
+
+            // Element selection simulation
+            const previewContainer = previewFrame;
+            previewContainer.addEventListener('click', function(e) {
+                if (state.selectedTool !== 'select' && state.selectedTool !== 'edit' && state.selectedTool !==
+                    'delete') return;
+
+                // Simula selezione di un elemento
+                const elementName = ['div', 'button', 'h1', 'p', 'input', 'ul', 'li', 'span', 'section', 'header', 'footer',
+                    'main', 'nav'
+                ][Math.floor(Math.random() * 13)];
+                const elementId = 'el-' + Date.now().toString(36).substring(4, 8);
+
+                state.selectedElement = { tag: elementName, id: elementId };
+
+                // Mostra il hover box
+                const rect = e.target.getBoundingClientRect();
+                const containerRect = previewContainer.getBoundingClientRect();
+
+                const x = e.clientX - containerRect.left - 80;
+                const y = e.clientY - containerRect.top - 30;
+
+                hoverBox.style.left = Math.max(10, x) + 'px';
+                hoverBox.style.top = Math.max(10, y) + 'px';
+                hoverBox.style.width = '160px';
+                hoverBox.style.height = '40px';
+                hoverBox.classList.add('visible');
+                hoverLabel.textContent = `<${elementName}>`;
+
+                elementInfo.textContent = `📦 Selezionato: <${elementName}>`;
+
+                if (state.selectedTool === 'edit') {
+                    showToast(`✏️ Modifica ${elementName} via chat`, 'info');
+                    promptInput.value = `Modifica l'elemento ${elementName} rendendolo più grande e colorato`;
+                    promptInput.style.height = 'auto';
+                    promptInput.focus();
+                } else if (state.selectedTool === 'delete') {
+                    showToast(`🗑️ Elemento ${elementName} eliminato (simulazione)`, 'warning');
+                    setTimeout(() => {
+                        hoverBox.classList.remove('visible');
+                        elementInfo.textContent = '📦 Nessun elemento selezionato';
+                        state.selectedElement = null;
+                    }, 1000);
+                }
+
+                // Feedback visivo
+                showToast(`✅ Selezionato: <${elementName}>`, 'success');
+            });
+
+            // ============================
+            //  UI FUNCTIONS
+            // ============================
+
+            function updateApiStatus() {
+                const hasKey = hasValidApiKey();
+                if (hasKey) {
+                    apiStatusText.textContent = '🔑';
+                    apiStatusBadge.className = 'badge badge-green';
+                    statusDot.className = 'status-dot';
+                    welcomeMessage.textContent = '✅ API configurata! Generazione full-stack.';
+                    apiStatus.className = 'api-status success';
+                    apiStatus.innerHTML = `<i class="fas fa-check-circle"></i><span>API configurata</span>`;
+                    apiKeyInput.value = getApiKey();
+                } else {
+                    apiStatusText.textContent = '⚡';
+                    apiStatusBadge.className = 'badge badge-red';
+                    statusDot.className = 'status-dot offline';
+                    welcomeMessage.textContent = '⚠️ Configura la chiave API cliccando su ⚡';
+                    apiStatus.className = 'api-status info';
+                    apiStatus.innerHTML = `<i class="fas fa-info-circle"></i><span>Nessuna chiave configurata</span>`;
                 }
             }
-            return blocks;
-        }
 
-        function mergeCodeBlocks(blocks) {
-            let updated = false;
-            for (const [filename, content] of Object.entries(blocks)) {
-                if (content && content.trim().length > 0) {
-                    if (!state.files[filename]) {
-                        state.files[filename] = content;
-                        updated = true;
-                    } else if (state.files[filename] !== content) {
-                        state.files[filename] = content;
-                        updated = true;
-                    }
+            function setLiveStatus(text, type = 'idle') {
+                liveStatusText.textContent = text;
+                livePulse.className = 'pulse';
+                if (type === 'generating') {
+                    livePulse.classList.add('generating');
+                    previewDot.className = 'dot generating';
+                    statusDot.className = 'status-dot generating';
+                } else if (type === 'error') {
+                    livePulse.classList.add('error');
+                    previewDot.className = 'dot error';
+                    statusDot.className = 'status-dot offline';
+                } else {
+                    livePulse.classList.remove('generating', 'error');
+                    previewDot.className = 'dot';
+                    statusDot.className = 'status-dot';
                 }
             }
-            return updated;
-        }
 
-        // ============================
-        //  GENERAZIONE CODICE
-        // ============================
+            function setAgentStep(step) {
+                state.agentStep = step;
+                agentSteps.forEach((el, i) => {
+                    el.classList.remove('active', 'done');
+                    if (i < step) el.classList.add('done');
+                    else if (i === step) el.classList.add('active');
+                });
+            }
 
-        async function generateCode(prompt) {
-            if (state.isGenerating) return;
-            state.isGenerating = true;
-            sendBtn.disabled = true;
+            function updateFileCount() { fileCount.textContent = Object.keys(state.files).length; }
 
-            setLiveStatus('🔄 Generazione in corso...', 'generating');
+            function showToast(message, type = 'info') {
+                const existing = document.querySelector('.toast');
+                if (existing) existing.remove();
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                const icons = { error: 'fa-exclamation-circle', success: 'fa-check-circle',
+                    warning: 'fa-triangle-exclamation', info: 'fa-info-circle' };
+                toast.innerHTML = `<i class="fas ${icons[type] || icons.info}"></i> ${message}`;
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 2500);
+            }
 
-            addMessage('user', prompt);
-            state.conversationHistory.push({ role: 'user', content: prompt });
+            function updateEditor() {
+                const content = state.files[state.activeFile] || '';
+                codeEditor.innerText = content;
+                updateLineNumbers();
+                Prism.highlightElement(codeEditor);
+            }
 
-            const statusMsg = addMessage('assistant', null, null,
-                `<i class="fas fa-spinner spinner"></i> Sto generando per: "${prompt.substring(0, 40)}${prompt.length > 40 ? '...' : ''}"`
-            );
+            function updateLineNumbers() {
+                const content = codeEditor.innerText;
+                const lines = content.split('\n').length;
+                let nums = '';
+                for (let i = 1; i <= lines; i++) nums += i + '\n';
+                lineNumbers.textContent = nums;
+            }
 
-            try {
-                let contextStr = '\n\nCONTESTO PROGETTO ATTUALE:\n';
-                for (const [filename, content] of Object.entries(state.files)) {
-                    contextStr += `\n--- ${filename} ---\n${content.substring(0, 400)}${content.length > 400 ? '...' : ''}\n`;
-                }
+            function updateFileTabs() {
+                const currentFiles = Object.keys(state.files);
+                const tabsContainer = fileTabs;
+                const existingTabs = tabsContainer.querySelectorAll('.file-tab');
+                existingTabs.forEach(tab => {
+                    const filename = tab.dataset.file;
+                    if (!state.files[filename]) tab.remove();
+                });
 
-                const messages = [...state.conversationHistory.slice(-8)];
-                const lastUserMsg = messages[messages.length - 1];
-                if (lastUserMsg && lastUserMsg.role === 'user') {
-                    lastUserMsg.content = lastUserMsg.content + contextStr;
-                }
-
-                let reply = '';
-                let usedFallback = false;
-
-                if (hasValidApiKey()) {
-                    try {
-                        const apiKey = getApiKey();
-                        const apiEndpoint = getApiEndpoint();
-
-                        setLiveStatus('🤖 Chiamata API...', 'generating');
-
-                        const response = await fetch(apiEndpoint, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${apiKey}`
-                            },
-                            body: JSON.stringify({
-                                model: 'deepseek-chat',
-                                messages: messages,
-                                max_tokens: 4096,
-                                temperature: 0.3,
-                                top_p: 0.9
-                            })
+                currentFiles.forEach(filename => {
+                    let tab = tabsContainer.querySelector(`.file-tab[data-file="${filename}"]`);
+                    if (!tab) {
+                        tab = document.createElement('div');
+                        tab.className = 'file-tab';
+                        tab.dataset.file = filename;
+                        const icon = getFileIcon(filename);
+                        tab.innerHTML = `
+                            <span class="file-icon ${icon.class}">${icon.html}</span>
+                            ${filename}
+                            <button class="close-btn" data-file="${filename}"><i class="fas fa-times"></i></button>
+                        `;
+                        const addBtn = tabsContainer.querySelector('.add-file-btn');
+                        tabsContainer.insertBefore(tab, addBtn);
+                        tab.addEventListener('click', () => switchFile(filename));
+                        tab.querySelector('.close-btn').addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            deleteFile(filename);
                         });
-
-                        if (!response.ok) {
-                            throw new Error(`HTTP ${response.status}`);
-                        }
-
-                        const data = await response.json();
-                        reply = data.choices[0].message.content;
-
-                        if (data.usage) {
-                            state.tokenCount += data.usage.total_tokens || 0;
-                            tokenSpan.textContent = state.tokenCount;
-                        }
-
-                        setLiveStatus('✅ Ricevuto, aggiorno...', 'generating');
-
-                    } catch (apiError) {
-                        console.warn('API error:', apiError);
-                        usedFallback = true;
-                        reply = generateFallbackResponse(prompt);
-                        showToast('⚠️ Errore API, uso offline', 'error');
                     }
-                } else {
-                    usedFallback = true;
-                    reply = generateFallbackResponse(prompt);
-                    setLiveStatus('📦 Modalità offline', 'generating');
+                    tab.classList.toggle('active', filename === state.activeFile);
+                });
+                updateFileCount();
+            }
+
+            function getFileIcon(filename) {
+                if (filename.endsWith('.jsx')) return { class: 'react', html: '<i class="fab fa-react"></i>' };
+                if (filename.endsWith('.css')) return { class: 'css', html: '<i class="fab fa-css3-alt"></i>' };
+                if (filename.endsWith('.js')) return { class: 'js', html: '<i class="fab fa-js"></i>' };
+                return { class: '', html: '<i class="fas fa-file"></i>' };
+            }
+
+            function switchFile(filename) {
+                if (!state.files[filename]) return;
+                const content = codeEditor.innerText;
+                if (state.files[state.activeFile] !== undefined) {
+                    state.files[state.activeFile] = content;
                 }
+                state.activeFile = filename;
+                updateEditor();
+                updateFileTabs();
+                updatePreview();
+            }
 
-                statusMsg.remove();
-
-                const blocks = extractCodeBlocks(reply);
-                const hasCode = Object.keys(blocks).length > 0;
-
-                if (hasCode) {
-                    addMessage('assistant', usedFallback ? '🧩 Generato offline' : reply, blocks);
-                    const updated = mergeCodeBlocks(blocks);
-                    if (updated) {
-                        if (!state.files[state.activeFile]) {
-                            state.activeFile = Object.keys(state.files)[0] || 'index.html';
-                        }
-                        updateFileTabs();
-                        updateEditor();
-                        updatePreview();
-                        setLiveStatus('✅ Progetto aggiornato!', 'idle');
-                        showToast('✅ Codice generato!', 'success');
-                    } else {
-                        setLiveStatus('ℹ️ Nessuna modifica', 'idle');
-                    }
-                } else {
-                    addMessage('assistant', reply || '⚠️ Nessun codice valido trovato.');
-                    setLiveStatus('⚠️ Nessun codice valido', 'error');
-                    showToast('⚠️ Nessun codice valido', 'warning');
+            function deleteFile(filename) {
+                if (Object.keys(state.files).length <= 1) {
+                    showToast('Non puoi eliminare l\'ultimo file', 'error');
+                    return;
                 }
-
-                state.conversationHistory.push({ role: 'assistant', content: reply });
-
-            } catch (error) {
-                console.error('Generation error:', error);
-                statusMsg.remove();
-                const fallbackBlocks = generateFallbackBlocks(prompt);
-                addMessage('assistant', '⚠️ Errore, uso fallback', fallbackBlocks);
-                mergeCodeBlocks(fallbackBlocks);
-                if (!state.files[state.activeFile]) {
-                    state.activeFile = Object.keys(state.files)[0] || 'index.html';
+                if (filename === 'App.jsx') {
+                    showToast('Non puoi eliminare App.jsx', 'error');
+                    return;
+                }
+                delete state.files[filename];
+                if (state.activeFile === filename) {
+                    state.activeFile = Object.keys(state.files)[0];
                 }
                 updateFileTabs();
                 updateEditor();
                 updatePreview();
-                setLiveStatus('❌ Errore, fallback', 'error');
-                showToast('⚠️ Errore, usato fallback', 'error');
+                showToast(`File ${filename} eliminato`, 'success');
             }
 
-            state.isGenerating = false;
-            sendBtn.disabled = false;
-            promptInput.focus();
-
-            setTimeout(() => {
-                if (livePulse.className !== 'pulse error') {
-                    setLiveStatus('⏳ In attesa...', 'idle');
+            function addFile(filename, content = '') {
+                if (state.files[filename]) {
+                    showToast('File già esistente', 'error');
+                    return false;
                 }
-            }, 3000);
-        }
-
-        // ============================
-        //  FALLBACK
-        // ============================
-
-        function generateFallbackResponse(prompt) {
-            const blocks = generateFallbackBlocks(prompt);
-            let result = '';
-            for (const [name, code] of Object.entries(blocks)) {
-                const ext = name.split('.').pop() || 'txt';
-                result += `\`\`\`${ext}\n${code}\n\`\`\`\n\n`;
-            }
-            return result;
-        }
-
-        function generateFallbackBlocks(prompt) {
-            const blocks = {};
-            const lower = prompt.toLowerCase();
-
-            if (lower.includes('todo') || lower.includes('lista')) {
-                blocks['index.html'] = `<!DOCTYPE html>
-        <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Todo List</title><link rel="stylesheet" href="style.css"></head>
-        <body><div id="app"><h1>📋 Todo List</h1>
-        <div class="input-group"><input id="todoInput" placeholder="Nuovo todo..."><button id="addBtn">➕</button></div>
-        <ul id="todoList"></ul><p id="counter"></p>
-        <script src="script.js"><\/script></div></body></html>`;
-                blocks['style.css'] = `*{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:system-ui;display:flex;justify-content:center;align-items:center;min-height:100vh;background:linear-gradient(135deg,#f0f0f5,#e8e8f0)}
-        #app{background:white;padding:30px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.08);width:100%;max-width:400px;margin:20px}
-        h1{margin-bottom:16px;color:#1a1a2e;font-size:24px}
-        .input-group{display:flex;gap:8px;margin-bottom:14px}
-        #todoInput{flex:1;padding:10px 14px;border:2px solid #e0e0e8;border-radius:10px;font-size:14px;outline:none}
-        #todoInput:focus{border-color:#6366f1}
-        #addBtn{padding:10px 18px;border:none;border-radius:10px;background:#6366f1;color:white;font-size:18px;cursor:pointer}
-        #addBtn:hover{background:#4f46e5}
-        ul{list-style:none;padding:0}
-        li{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #f0f0f5}
-        li .delete{color:#ef4444;cursor:pointer;font-weight:bold;padding:0 6px}
-        #counter{color:#8a8a9a;font-size:12px;margin-top:10px}`;
-                blocks['script.js'] = `document.addEventListener('DOMContentLoaded',()=>{
-        const input=document.getElementById('todoInput');
-        const addBtn=document.getElementById('addBtn');
-        const list=document.getElementById('todoList');
-        const counter=document.getElementById('counter');
-        let todos=JSON.parse(localStorage.getItem('todos')||'[]');
-        function render(){list.innerHTML='';todos.forEach((t,i)=>{
-        const li=document.createElement('li');
-        li.innerHTML=\`<span>\${t}</span><span class="delete" data-index="\${i}">✕</span>\`;
-        list.appendChild(li);});
-        counter.textContent=\`Totale: \${todos.length}\`;
-        localStorage.setItem('todos',JSON.stringify(todos));}
-        addBtn.addEventListener('click',()=>{const val=input.value.trim();if(val){todos.push(val);input.value='';render();}});
-        input.addEventListener('keydown',e=>{if(e.key==='Enter')addBtn.click();});
-        list.addEventListener('click',e=>{if(e.target.classList.contains('delete')){const idx=parseInt(e.target.dataset.index);todos.splice(idx,1);render();}});
-        render();});`;
-            } else if (lower.includes('timer')) {
-                blocks['index.html'] = `<!DOCTYPE html>
-        <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Timer</title><link rel="stylesheet" href="style.css"></head>
-        <body><div id="app"><h1>⏱️ Timer</h1>
-        <div id="display">00:00</div>
-        <div class="buttons">
-        <button id="startBtn">▶ Start</button>
-        <button id="stopBtn">⏹ Stop</button>
-        <button id="resetBtnTimer">↺ Reset</button>
-        </div>
-        <script src="script.js"><\/script></div></body></html>`;
-                blocks['style.css'] = `*{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:system-ui;display:flex;justify-content:center;align-items:center;min-height:100vh;background:linear-gradient(135deg,#1a1a2e,#2a1a3e)}
-        #app{background:#12121e;padding:30px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.5);width:100%;max-width:360px;text-align:center}
-        h1{color:#e0e0e0;font-size:22px;margin-bottom:16px}
-        #display{color:#f0f0f0;font-size:48px;padding:20px;border-radius:12px;background:#0a0a12;font-family:'JetBrains Mono',monospace;margin-bottom:20px;letter-spacing:2px}
-        .buttons{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-        .buttons button{padding:12px 20px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:0.15s;min-width:70px;flex:1}
-        .buttons button:active{transform:scale(0.94)}
-        #startBtn{background:#22c55e;color:white}
-        #startBtn:hover{background:#16a34a}
-        #stopBtn{background:#ef4444;color:white}
-        #stopBtn:hover{background:#dc2626}
-        #resetBtnTimer{background:#6366f1;color:white}
-        #resetBtnTimer:hover{background:#4f46e5}`;
-                blocks['script.js'] = `let display=document.getElementById('display');
-        let seconds=0,minutes=0,timer=null,running=false;
-        function update(){display.textContent=\`\${String(minutes).padStart(2,'0')}:\${String(seconds).padStart(2,'0')}\`;}
-        document.getElementById('startBtn').addEventListener('click',()=>{
-        if(running)return;
-        running=true;
-        timer=setInterval(()=>{
-        seconds++;
-        if(seconds===60){seconds=0;minutes++;}
-        update();
-        },1000);
-        });
-        document.getElementById('stopBtn').addEventListener('click',()=>{
-        if(timer){clearInterval(timer);timer=null;running=false;}
-        });
-        document.getElementById('resetBtnTimer').addEventListener('click',()=>{
-        if(timer){clearInterval(timer);timer=null;running=false;}
-        seconds=0;minutes=0;update();
-        });
-        update();`;
-            } else {
-                blocks['index.html'] = `<!DOCTYPE html>
-        <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>App</title><link rel="stylesheet" href="style.css"></head>
-        <body><div id="app"><h1>✨ ${prompt.substring(0, 30)}</h1>
-        <p>${prompt}</p><button id="actionBtn">Azione</button><div id="output"></div>
-        <script src="script.js"><\/script></div></body></html>`;
-                blocks['style.css'] = `*{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:system-ui;display:flex;justify-content:center;align-items:center;min-height:100vh;background:linear-gradient(135deg,#f0f0f5,#e8e8f0)}
-        #app{background:white;padding:30px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.08);text-align:center;width:100%;max-width:400px;margin:20px}
-        h1{color:#1a1a2e;font-size:24px;margin-bottom:10px}
-        p{color:#4a4a5a;margin-bottom:16px;font-size:14px}
-        button{padding:12px 28px;border:none;border-radius:12px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;font-weight:600;font-size:15px;cursor:pointer;transition:0.2s}
-        button:active{transform:scale(0.96)}
-        #output{margin-top:14px;color:#6366f1;font-weight:500}`;
-                blocks['script.js'] = `document.addEventListener('DOMContentLoaded',()=>{
-        document.getElementById('actionBtn').addEventListener('click',()=>{
-        document.getElementById('output').textContent='✅ Azione eseguita!';
-        });});`;
-            }
-            return blocks;
-        }
-
-        // ============================
-        //  GESTIONE MODALE API
-        // ============================
-
-        function openApiModal() {
-            apiKeyInput.value = getApiKey();
-            apiEndpointInput.value = getApiEndpoint();
-            updateApiStatus();
-            apiModal.classList.add('active');
-        }
-
-        function closeApiModal() {
-            apiModal.classList.remove('active');
-        }
-
-        apiStatusBadge.addEventListener('click', openApiModal);
-
-        apiModalCancel.addEventListener('click', closeApiModal);
-        apiModal.addEventListener('click', (e) => {
-            if (e.target === apiModal) closeApiModal();
-        });
-
-        apiModalSave.addEventListener('click', () => {
-            const key = apiKeyInput.value.trim();
-            const endpoint = apiEndpointInput.value.trim() || 'https://api.deepseek.com/v1/chat/completions';
-
-            if (key && key.startsWith('sk-')) {
-                setApiKey(key);
-                setApiEndpoint(endpoint);
-                updateApiStatus();
-                closeApiModal();
-                showToast('✅ Chiave API salvata!', 'success');
-            } else if (key === '') {
-                setApiKey('');
-                updateApiStatus();
-                closeApiModal();
-                showToast('ℹ️ Modalità offline attivata', 'info');
-            } else {
-                apiStatus.className = 'api-status error';
-                apiStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i> <span>Chiave non valida</span>`;
-                showToast('❌ Chiave non valida', 'error');
-            }
-        });
-
-        apiTestBtn.addEventListener('click', async () => {
-            const key = apiKeyInput.value.trim();
-            if (!key || !key.startsWith('sk-')) {
-                apiStatus.className = 'api-status error';
-                apiStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i> <span>Inserisci una chiave valida</span>`;
-                return;
+                state.files[filename] = content || `/* ${filename} */\n\n`;
+                state.activeFile = filename;
+                updateFileTabs();
+                updateEditor();
+                updatePreview();
+                showToast(`File ${filename} creato`, 'success');
+                return true;
             }
 
-            apiStatus.className = 'api-status info';
-            apiStatus.innerHTML = `<i class="fas fa-spinner fa-spin"></i> <span>Test...</span>`;
+            function updatePreview() {
+                const container = previewFrame;
+                // Per React, mostriamo un'anteprima simulata
+                const hasReact = state.files['App.jsx'] && state.files['App.jsx'].includes('React');
+                if (hasReact) {
+                    container.innerHTML = `
+                        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:#f8f8fc;padding:16px;text-align:center;position:relative;">
+                            <div style="position:absolute;top:8px;right:12px;font-size:9px;color:#8a8a9a;background:white;padding:2px 8px;border-radius:4px;border:1px solid #e0e0e8;">
+                                <i class="fab fa-react" style="color:#61dafb;"></i> React
+                            </div>
+                            <i class="fab fa-react" style="font-size:36px;color:#61dafb;margin-bottom:8px;"></i>
+                            <h2 style="color:#1a1a2e;font-size:16px;">🚀 React App</h2>
+                            <p style="color:#4a4a5a;font-size:11px;margin-top:4px;">${state.files['App.jsx'].substring(0, 80)}...</p>
+                            <div style="margin-top:10px;display:flex;gap:6px;">
+                                <button onclick="alert('📦 Esporta su GitHub per deploy!')" style="padding:6px 16px;background:#6366f1;color:white;border:none;border-radius:6px;font-size:10px;cursor:pointer;">📦 Deploy</button>
+                                <button onclick="alert('📋 Codice copiato!')" style="padding:6px 16px;background:#1a1a2e;color:white;border:none;border-radius:6px;font-size:10px;cursor:pointer;">📋 Copia</button>
+                            </div>
+                            <div style="margin-top:8px;font-size:8px;color:#8a8a9a;">
+                                <i class="fas fa-check-circle" style="color:#22c55e;"></i> Database: Supabase
+                            </div>
+                        </div>
+                    `;
+                    previewUrl.textContent = 'React ✓';
+                    return;
+                }
 
-            try {
-                const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${key}`
-                    },
-                    body: JSON.stringify({
-                        model: 'deepseek-chat',
-                        messages: [{ role: 'user', content: 'Ciao, rispondi OK' }],
-                        max_tokens: 10
-                    })
+                // Fallback: preview HTML classica
+                const htmlContent = state.files['index.html'] || '';
+                let fullHtml = htmlContent;
+                const cssContent = state.files['style.css'] || '';
+                if (cssContent) {
+                    const styleTag = `<style>/* style.css */\n${cssContent}\n</style>`;
+                    fullHtml = fullHtml.replace(/<link[^>]*style\.css[^>]*>/gi, '');
+                    fullHtml = fullHtml.replace('</head>', `${styleTag}</head>`);
+                }
+                const jsContent = state.files['script.js'] || '';
+                if (jsContent) {
+                    const scriptTag = `<script>/* script.js */\n${jsContent}\n<\/script>`;
+                    fullHtml = fullHtml.replace(/<script[^>]*script\.js[^>]*><\/script>/gi, '');
+                    fullHtml = fullHtml.replace('</body>', `${scriptTag}</body>`);
+                }
+
+                if (!fullHtml || fullHtml.trim() === '') {
+                    container.innerHTML =
+                        `<div class="empty-preview"><i class="fas fa-mobile-alt"></i><span>Nessun codice</span><span>Crea o modifica i file</span></div>`;
+                    return;
+                }
+
+                let iframe = container.querySelector('iframe');
+                if (!iframe) {
+                    iframe = document.createElement('iframe');
+                    iframe.setAttribute('sandbox', 'allow-scripts allow-modals allow-same-origin');
+                    container.innerHTML = '';
+                    container.appendChild(iframe);
+                }
+                try {
+                    const doc = iframe.contentDocument || iframe.contentWindow.document;
+                    doc.open();
+                    doc.write(fullHtml);
+                    doc.close();
+                    previewUrl.textContent = 'localhost ✓';
+                } catch (e) {
+                    previewUrl.textContent = '⚠️ errore';
+                }
+            }
+
+            // Panel navigation
+            function switchPanel(panelId) {
+                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                document.getElementById('panel' + panelId.charAt(0).toUpperCase() + panelId.slice(1)).classList.add(
+                'active');
+                document.querySelectorAll('.mobile-tab').forEach(t => {
+                    t.classList.toggle('active', t.dataset.panel === panelId);
                 });
+                if (panelId === 'preview') updatePreview();
+            }
 
-                if (response.ok) {
-                    apiStatus.className = 'api-status success';
-                    apiStatus.innerHTML = `<i class="fas fa-check-circle"></i> <span>✅ API funzionante!</span>`;
-                    showToast('✅ Test riuscito!', 'success');
+            mobileTabs.addEventListener('click', (e) => {
+                const tab = e.target.closest('.mobile-tab');
+                if (tab) switchPanel(tab.dataset.panel);
+            });
+
+            // ============================
+            //  CHAT FUNCTIONS
+            // ============================
+
+            function addMessage(role, content, codeBlocks = null, status = null) {
+                const div = document.createElement('div');
+                div.className = `message ${role}`;
+                const label = document.createElement('div');
+                label.className = `role-label ${role === 'user' ? 'user-label' : ''}`;
+                label.innerHTML = role === 'user' ? '👤 Tu' : '🤖 Assistente';
+                div.appendChild(label);
+
+                if (status) {
+                    const statusDiv = document.createElement('div');
+                    statusDiv.className = 'status-message';
+                    statusDiv.innerHTML = status;
+                    div.appendChild(statusDiv);
+                }
+
+                if (codeBlocks) {
+                    for (const [filename, code] of Object.entries(codeBlocks)) {
+                        const pre = document.createElement('pre');
+                        pre.className = 'code-block';
+                        const fileLabel = document.createElement('div');
+                        fileLabel.className = 'file-label';
+                        fileLabel.textContent = `📄 ${filename}`;
+                        pre.appendChild(fileLabel);
+                        const codeEl = document.createElement('code');
+                        codeEl.className = 'language-jsx';
+                        codeEl.textContent = code;
+                        pre.appendChild(codeEl);
+                        div.appendChild(pre);
+                    }
+                }
+
+                if (content && typeof content === 'string' && !status) {
+                    const textP = document.createElement('p');
+                    textP.textContent = content;
+                    div.appendChild(textP);
+                }
+
+                chatMessages.appendChild(div);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                Prism.highlightAllUnder(div);
+                return div;
+            }
+
+            function addTypingIndicator() {
+                const div = document.createElement('div');
+                div.className = 'typing-indicator';
+                div.id = 'typingIndicator';
+                for (let i = 0; i < 3; i++) {
+                    const span = document.createElement('span');
+                    div.appendChild(span);
+                }
+                chatMessages.appendChild(div);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function removeTypingIndicator() {
+                const el = document.getElementById('typingIndicator');
+                if (el) el.remove();
+            }
+
+            function extractCodeBlocks(text) {
+                const blocks = {};
+                const regex = /```(jsx|js|javascript|css|json|xml|html)\s*\n([\s\S]*?)```/gi;
+                let match;
+                while ((match = regex.exec(text)) !== null) {
+                    const lang = match[1].toLowerCase();
+                    let code = match[2].trim();
+                    let filename = '';
+                    const headerMatch = code.match(/^\/\/\s*([\w.-]+)\s*/);
+                    if (headerMatch) {
+                        filename = headerMatch[1];
+                        code = code.replace(/^\/\/\s*[\w.-]+\s*/, '');
+                    } else if (lang === 'jsx') {
+                        filename = 'App.jsx';
+                    } else if (lang === 'css') {
+                        filename = 'index.css';
+                    } else if (lang === 'js' || lang === 'javascript') {
+                        filename = 'supabase.js';
+                    } else if (lang === 'html') {
+                        filename = 'index.html';
+                    }
+                    if (filename && code) blocks[filename] = code;
+                }
+
+                if (Object.keys(blocks).length === 0) {
+                    const genericRegex = /```\s*\n([\s\S]*?)```/g;
+                    let gmatch;
+                    while ((gmatch = genericRegex.exec(text)) !== null) {
+                        const code = gmatch[1].trim();
+                        if (code.includes('React') || code.includes('useState')) {
+                            blocks['App.jsx'] = code;
+                        } else if (code.includes('@supabase')) {
+                            blocks['supabase.js'] = code;
+                        } else if (code.includes('{') && code.includes('}') && code.includes(':')) {
+                            blocks['index.css'] = code;
+                        } else if (code.includes('<!DOCTYPE')) {
+                            blocks['index.html'] = code;
+                        } else {
+                            blocks['code.txt'] = code;
+                        }
+                    }
+                }
+                return blocks;
+            }
+
+            function mergeCodeBlocks(blocks) {
+                let updated = false;
+                for (const [filename, content] of Object.entries(blocks)) {
+                    if (content && content.trim().length > 0) {
+                        if (!state.files[filename]) {
+                            state.files[filename] = content;
+                            updated = true;
+                        } else if (state.files[filename] !== content) {
+                            state.files[filename] = content;
+                            updated = true;
+                        }
+                    }
+                }
+                return updated;
+            }
+
+            // ============================
+            //  GENERAZIONE CODICE FULL-STACK
+            // ============================
+
+            async function generateCode(prompt) {
+                if (state.isGenerating) return;
+                state.isGenerating = true;
+                sendBtn.disabled = true;
+
+                // Se c'è un elemento selezionato, aggiungi contesto
+                let finalPrompt = prompt;
+                if (state.selectedElement) {
+                    finalPrompt =
+                        `Modifica l'elemento <${state.selectedElement.tag}> nella mia app: ${prompt}`;
+                    showToast(`✏️ Modificando <${state.selectedElement.tag}>`, 'info');
+                }
+
+                setLiveStatus('🔄 Agent Mode: Pianificazione...', 'generating');
+                setAgentStep(0);
+
+                addMessage('user', finalPrompt);
+                state.conversationHistory.push({ role: 'user', content: finalPrompt });
+
+                const statusMsg = addMessage('assistant', null, null,
+                    `<i class="fas fa-spinner spinner"></i> Agent Mode: pianificazione e generazione per "${finalPrompt.substring(0, 30)}${finalPrompt.length > 30 ? '...' : ''}"`
+                    );
+
+                try {
+                    // Step 1: Plan
+                    setAgentStep(0);
+                    setLiveStatus('📋 Agent: Pianificazione architettura...', 'generating');
+
+                    let contextStr = '\n\nCONTESTO PROGETTO ATTUALE (React + Supabase):\n';
+                    for (const [filename, content] of Object.entries(state.files)) {
+                        contextStr += `\n--- ${filename} ---\n${content.substring(0, 300)}${content.length > 300 ? '...' : ''}\n`;
+                    }
+
+                    // Se c'è un elemento selezionato, aggiungi al contesto
+                    if (state.selectedElement) {
+                        contextStr +=
+                            `\n🔹 ELEMENTO SELEZIONATO: <${state.selectedElement.tag}> da modificare secondo la richiesta.\n`;
+                    }
+
+                    const messages = [...state.conversationHistory.slice(-6)];
+                    const lastUserMsg = messages[messages.length - 1];
+                    if (lastUserMsg && lastUserMsg.role === 'user') {
+                        lastUserMsg.content = lastUserMsg.content + contextStr +
+                            '\n\nGenera codice React + Supabase completo. Stack: React 18, Vite, Tailwind CSS, Supabase.';
+                    }
+
+                    let reply = '';
+                    let usedFallback = false;
+
+                    if (hasValidApiKey()) {
+                        try {
+                            const apiKey = getApiKey();
+                            setLiveStatus('🧠 Agent: Generazione codice...', 'generating');
+                            setAgentStep(1);
+
+                            const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${apiKey}`
+                                },
+                                body: JSON.stringify({
+                                    model: 'deepseek-chat',
+                                    messages: messages,
+                                    max_tokens: 4096,
+                                    temperature: 0.3,
+                                    top_p: 0.9
+                                })
+                            });
+
+                            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                            const data = await response.json();
+                            reply = data.choices[0].message.content;
+
+                            if (data.usage) {
+                                state.tokenCount += data.usage.total_tokens || 0;
+                                tokenSpan.textContent = state.tokenCount;
+                            }
+
+                            setLiveStatus('✅ Agent: Codice generato, aggiorno...', 'generating');
+                            setAgentStep(2);
+
+                        } catch (apiError) {
+                            console.warn('API error:', apiError);
+                            usedFallback = true;
+                            reply = generateFallbackResponse(finalPrompt);
+                            showToast('⚠️ Errore API, uso offline', 'error');
+                        }
+                    } else {
+                        usedFallback = true;
+                        reply = generateFallbackResponse(finalPrompt);
+                        setLiveStatus('📦 Modalità offline', 'generating');
+                    }
+
+                    statusMsg.remove();
+
+                    const blocks = extractCodeBlocks(reply);
+                    const hasCode = Object.keys(blocks).length > 0;
+
+                    if (hasCode) {
+                        addMessage('assistant', usedFallback ? '🧩 Generato offline (React + Supabase)' : reply,
+                        blocks);
+                        const updated = mergeCodeBlocks(blocks);
+                        if (updated) {
+                            if (!state.files[state.activeFile]) {
+                                state.activeFile = Object.keys(state.files)[0] || 'App.jsx';
+                            }
+                            updateFileTabs();
+                            updateEditor();
+                            updatePreview();
+                            setLiveStatus('✅ Progetto full-stack aggiornato!', 'idle');
+                            setAgentStep(3);
+                            showToast('✅ App React + Supabase generata!', 'success');
+                            // Resetta selezione
+                            hoverBox.classList.remove('visible');
+                            state.selectedElement = null;
+                            elementInfo.textContent = '📦 Nessun elemento selezionato';
+                        } else {
+                            setLiveStatus('ℹ️ Nessuna modifica', 'idle');
+                        }
+                    } else {
+                        addMessage('assistant', reply || '⚠️ Nessun codice valido trovato.');
+                        setLiveStatus('⚠️ Nessun codice valido', 'error');
+                        setAgentStep(0);
+                        showToast('⚠️ Nessun codice valido', 'warning');
+                    }
+
+                    state.conversationHistory.push({ role: 'assistant', content: reply });
+
+                } catch (error) {
+                    console.error('Generation error:', error);
+                    statusMsg.remove();
+                    const fallbackBlocks = generateFallbackBlocks(finalPrompt);
+                    addMessage('assistant', '⚠️ Errore, uso fallback', fallbackBlocks);
+                    mergeCodeBlocks(fallbackBlocks);
+                    if (!state.files[state.activeFile]) {
+                        state.activeFile = Object.keys(state.files)[0] || 'App.jsx';
+                    }
+                    updateFileTabs();
+                    updateEditor();
+                    updatePreview();
+                    setLiveStatus('❌ Errore, fallback', 'error');
+                    setAgentStep(0);
+                    showToast('⚠️ Errore, usato fallback', 'error');
+                }
+
+                state.isGenerating = false;
+                sendBtn.disabled = false;
+                promptInput.focus();
+
+                setTimeout(() => {
+                    if (livePulse.className !== 'pulse error') {
+                        setLiveStatus('⏳ In attesa...', 'idle');
+                    }
+                }, 3000);
+            }
+
+            // ============================
+            //  FALLBACK
+            // ============================
+
+            function generateFallbackResponse(prompt) {
+                const blocks = generateFallbackBlocks(prompt);
+                let result = '';
+                for (const [name, code] of Object.entries(blocks)) {
+                    const ext = name.endsWith('.jsx') ? 'jsx' : name.split('.').pop() || 'txt';
+                    result += `\`\`\`${ext}\n${code}\n\`\`\`\n\n`;
+                }
+                return result;
+            }
+
+            function generateFallbackBlocks(prompt) {
+                const blocks = {};
+                const lower = prompt.toLowerCase();
+
+                if (lower.includes('todo') || lower.includes('lista')) {
+                    blocks['App.jsx'] = `import React, { useState, useEffect } from 'react';
+        import { createClient } from '@supabase/supabase-js';
+        import './index.css';
+
+        const supabase = createClient(
+          'https://your-project.supabase.co',
+          'your-anon-key'
+        );
+
+        function App() {
+          const [todos, setTodos] = useState([]);
+          const [input, setInput] = useState('');
+
+          useEffect(() => { fetchTodos(); }, []);
+
+          async function fetchTodos() {
+            const { data, error } = await supabase
+              .from('todos')
+              .select('*')
+              .order('created_at', { ascending: false });
+            if (error) console.error(error);
+            else setTodos(data || []);
+          }
+
+          async function addTodo() {
+            if (!input.trim()) return;
+            const { data, error } = await supabase
+              .from('todos')
+              .insert({ task: input })
+              .select();
+            if (error) console.error(error);
+            else { setTodos([data[0], ...todos]); setInput(''); }
+          }
+
+          return (
+            <div className="container">
+              <h1>📋 Todo List</h1>
+              <div className="input-group">
+                <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Nuovo todo..." />
+                <button onClick={addTodo}>➕ Aggiungi</button>
+              </div>
+              <ul>
+                {todos.map(todo => (
+                  <li key={todo.id}>{todo.task}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        }
+
+        export default App;`;
+                    blocks['index.css'] = `* { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui; background: #f0f0f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.08); width: 100%; max-width: 400px; }
+        h1 { color: #1a1a2e; margin-bottom: 16px; }
+        .input-group { display: flex; gap: 8px; margin-bottom: 16px; }
+        .input-group input { flex: 1; padding: 10px 14px; border: 2px solid #e0e0e8; border-radius: 10px; font-size: 14px; outline: none; }
+        .input-group input:focus { border-color: #6366f1; }
+        .input-group button { padding: 10px 18px; border: none; border-radius: 10px; background: #6366f1; color: white; font-size: 16px; cursor: pointer; }
+        .input-group button:hover { background: #4f46e5; }
+        ul { list-style: none; padding: 0; }
+        li { padding: 10px 12px; border-bottom: 1px solid #f0f0f5; }`;
+                    blocks['supabase.js'] = `import { createClient } from '@supabase/supabase-js';
+
+        const supabaseUrl = 'https://your-project.supabase.co';
+        const supabaseKey = 'your-anon-key';
+
+        export const supabase = createClient(supabaseUrl, supabaseKey);`;
+                } else {
+                    blocks['App.jsx'] = `import React, { useState } from 'react';
+        import './index.css';
+
+        function App() {
+          const [count, setCount] = useState(0);
+
+          return (
+            <div className="container">
+              <h1>🚀 ${prompt.substring(0, 30)}</h1>
+              <p>App generata con Lovable Pro</p>
+              <div className="counter">
+                <button onClick={() => setCount(count - 1)}>-</button>
+                <span>{count}</span>
+                <button onClick={() => setCount(count + 1)}>+</button>
+              </div>
+            </div>
+          );
+        }
+
+        export default App;`;
+                    blocks['index.css'] = `* { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui; background: linear-gradient(135deg, #f0f0f5, #e8e8f0); display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.08); text-align: center; width: 100%; max-width: 400px; }
+        h1 { color: #1a1a2e; margin-bottom: 10px; }
+        p { color: #4a4a5a; margin-bottom: 20px; }
+        .counter { display: flex; gap: 16px; justify-content: center; align-items: center; }
+        .counter button { padding: 12px 24px; border: none; border-radius: 12px; background: #6366f1; color: white; font-size: 20px; font-weight: 700; cursor: pointer; }
+        .counter span { font-size: 28px; font-weight: 700; color: #1a1a2e; min-width: 40px; }`;
+                    blocks['supabase.js'] = `import { createClient } from '@supabase/supabase-js';
+
+        const supabaseUrl = 'https://your-project.supabase.co';
+        const supabaseKey = 'your-anon-key';
+
+        export const supabase = createClient(supabaseUrl, supabaseKey);`;
+                }
+                return blocks;
+            }
+
+            // ============================
+            //  MODALI
+            // ============================
+
+            function openApiModal() {
+                apiKeyInput.value = getApiKey();
+                updateApiStatus();
+                apiModal.classList.add('active');
+            }
+
+            function closeApiModal() { apiModal.classList.remove('active'); }
+
+            apiStatusBadge.addEventListener('click', openApiModal);
+            apiModalCancel.addEventListener('click', closeApiModal);
+            apiModal.addEventListener('click', (e) => { if (e.target === apiModal) closeApiModal(); });
+
+            apiModalSave.addEventListener('click', () => {
+                const key = apiKeyInput.value.trim();
+                if (key && key.startsWith('sk-')) {
+                    setApiKey(key);
+                    updateApiStatus();
+                    closeApiModal();
+                    showToast('✅ Chiave API salvata!', 'success');
+                } else if (key === '') {
+                    setApiKey('');
+                    updateApiStatus();
+                    closeApiModal();
+                    showToast('ℹ️ Modalità offline attivata', 'info');
                 } else {
                     apiStatus.className = 'api-status error';
-                    apiStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i> <span>❌ Errore ${response.status}</span>`;
-                    showToast('❌ Test fallito', 'error');
+                    apiStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i><span>Chiave non valida</span>`;
+                    showToast('❌ Chiave non valida', 'error');
                 }
-            } catch (e) {
-                apiStatus.className = 'api-status error';
-                apiStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i> <span>❌ Errore di rete</span>`;
-                showToast('❌ Errore di connessione', 'error');
+            });
+
+            apiTestBtn.addEventListener('click', async () => {
+                const key = apiKeyInput.value.trim();
+                if (!key || !key.startsWith('sk-')) {
+                    apiStatus.className = 'api-status error';
+                    apiStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i><span>Inserisci una chiave valida</span>`;
+                    return;
+                }
+
+                apiStatus.className = 'api-status info';
+                apiStatus.innerHTML = `<i class="fas fa-spinner fa-spin"></i><span>Test...</span>`;
+
+                try {
+                    const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${key}` },
+                        body: JSON.stringify({ model: 'deepseek-chat', messages: [{ role: 'user',
+                                content: 'Ciao, rispondi OK' }], max_tokens: 10 })
+                    });
+
+                    if (response.ok) {
+                        apiStatus.className = 'api-status success';
+                        apiStatus.innerHTML = `<i class="fas fa-check-circle"></i><span>✅ API funzionante!</span>`;
+                        showToast('✅ Test riuscito!', 'success');
+                    } else {
+                        apiStatus.className = 'api-status error';
+                        apiStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i><span>❌ Errore ${response.status}</span>`;
+                        showToast('❌ Test fallito', 'error');
+                    }
+                } catch (e) {
+                    apiStatus.className = 'api-status error';
+                    apiStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i><span>❌ Errore di rete</span>`;
+                    showToast('❌ Errore di connessione', 'error');
+                }
+            });
+
+            // ============================
+            //  EVENTI UI
+            // ============================
+
+            function handleSend() {
+                const text = promptInput.value.trim();
+                if (!text || state.isGenerating) return;
+                generateCode(text);
+                promptInput.value = '';
+                promptInput.style.height = 'auto';
             }
-        });
 
-        // ============================
-        //  EVENTI UI
-        // ============================
-
-        function handleSend() {
-            const text = promptInput.value.trim();
-            if (!text || state.isGenerating) return;
-            generateCode(text);
-            promptInput.value = '';
-            promptInput.style.height = 'auto';
-        }
-
-        sendBtn.addEventListener('click', handleSend);
-        promptInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                handleSend();
-            }
-        });
-
-        promptInput.addEventListener('input', () => {
-            promptInput.style.height = 'auto';
-            promptInput.style.height = Math.min(promptInput.scrollHeight, 100) + 'px';
-        });
-
-        // Suggestion Chips
-        chips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                const prompt = chip.dataset.prompt;
-                if (prompt) {
-                    promptInput.value = prompt;
-                    promptInput.style.height = 'auto';
-                    promptInput.style.height = Math.min(promptInput.scrollHeight, 100) + 'px';
+            sendBtn.addEventListener('click', handleSend);
+            promptInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
                     handleSend();
                 }
             });
-        });
+            promptInput.addEventListener('input', () => {
+                promptInput.style.height = 'auto';
+                promptInput.style.height = Math.min(promptInput.scrollHeight, 70) + 'px';
+            });
 
-        runBtn.addEventListener('click', () => {
-            const content = codeEditor.innerText;
-            if (state.files[state.activeFile] !== undefined) {
-                state.files[state.activeFile] = content;
-            }
-            updatePreview();
-            setLiveStatus('✅ Preview aggiornata', 'idle');
-            showToast('Preview aggiornata', 'success');
-            switchPanel('preview');
-        });
+            chips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    const prompt = chip.dataset.prompt;
+                    if (prompt) {
+                        promptInput.value = prompt;
+                        promptInput.style.height = 'auto';
+                        promptInput.style.height = Math.min(promptInput.scrollHeight, 70) + 'px';
+                        handleSend();
+                    }
+                });
+            });
 
-        resetBtn.addEventListener('click', () => {
-            if (!confirm('Resettare la conversazione?')) return;
-            chatMessages.innerHTML = `
-                <div class="message assistant">
-                    <div class="role-label">🤖 Assistente</div>
-                    Conversazione reimpostata. Come posso aiutarti?
-                </div>
-            `;
-            state.conversationHistory = [
-                { role: 'system', content: `Sei un assistente esperto in sviluppo web. Genera codice HTML, CSS e JavaScript di alta qualità.
+            runBtn.addEventListener('click', () => {
+                const content = codeEditor.innerText;
+                if (state.files[state.activeFile] !== undefined) {
+                    state.files[state.activeFile] = content;
+                }
+                updatePreview();
+                setLiveStatus('✅ Preview aggiornata', 'idle');
+                showToast('Preview aggiornata', 'success');
+                switchPanel('preview');
+            });
+
+            resetBtn.addEventListener('click', () => {
+                if (!confirm('Resettare la conversazione?')) return;
+                chatMessages.innerHTML = `
+                    <div class="message assistant">
+                        <div class="role-label">🤖 Assistente</div>
+                        Conversazione reimpostata. Descrivimi la tua app full-stack!
+                    </div>
+                `;
+                state.conversationHistory = [
+                    { role: 'system', content: `Sei un assistente esperto in sviluppo full-stack React + Supabase.
+
+        STACK TECNOLOGICO (FISSO):
+        - Frontend: React 18 + Vite + Tailwind CSS
+        - Backend/Database: Supabase (PostgreSQL)
+        - Linguaggio: JavaScript/JSX
 
         REGOLE:
-        1. Restituisci il codice in blocchi markdown con triple backtick.
-        2. Organizza il codice in HTML, CSS e JavaScript separati.
-        3. Usa design moderno, pulito e responsive per mobile.
-        4. Aggiungi commenti utili.
+        1. Genera codice React con componenti funzionali e hooks.
+        2. Usa Supabase per database e autenticazione.
+        3. Organizza il codice in file separati: App.jsx, index.css, supabase.js.
+        4. Usa design moderno e responsive.
         5. Assicurati che il codice sia funzionante.
 
-        Formato:
-        \`\`\`html
-        <!-- index.html -->
-        <!DOCTYPE html>...
+        Formato risposta con blocchi markdown:
+        \`\`\`jsx
+        // App.jsx
+        import React...
         \`\`\`
         \`\`\`css
-        /* style.css */
+        /* index.css */
         ...
         \`\`\`
         \`\`\`js
-        // script.js
+        // supabase.js
         ...
         \`\`\`` }
-            ];
-            setLiveStatus('🔄 Resettato', 'idle');
-            showToast('Conversazione resettata', 'success');
-        });
+                ];
+                setLiveStatus('🔄 Resettato', 'idle');
+                setAgentStep(0);
+                hoverBox.classList.remove('visible');
+                state.selectedElement = null;
+                elementInfo.textContent = '📦 Nessun elemento selezionato';
+                showToast('Conversazione resettata', 'success');
+            });
 
-        exportBtn.addEventListener('click', () => {
-            const files = state.files;
-            const names = Object.keys(files);
-            if (names.length === 0) {
-                showToast('Nessun file da esportare', 'error');
-                return;
-            }
+            addFileBtn.addEventListener('click', () => {
+                newFileName.value = '';
+                newFileContent.value = '';
+                modalFileOverlay.classList.add('active');
+                setTimeout(() => newFileName.focus(), 100);
+            });
 
-            let exportText = '=== PROGETTO APPForge ===\n\n';
-            for (const [name, content] of Object.entries(files)) {
-                exportText += `--- ${name} ---\n${content}\n\n`;
-            }
+            modalFileCancel.addEventListener('click', () => { modalFileOverlay.classList.remove('active'); });
+            modalFileOverlay.addEventListener('click', (e) => { if (e.target === modalFileOverlay) modalFileOverlay
+                    .classList.remove('active'); });
 
-            const blob = new Blob([exportText], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'progetto_appforge.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            showToast('Progetto esportato!', 'success');
-        });
+            modalFileConfirm.addEventListener('click', () => {
+                let name = newFileName.value.trim();
+                if (!name) { showToast('Inserisci un nome file', 'error'); return; }
+                if (!name.includes('.')) name += '.txt';
+                const content = newFileContent.value || `/* ${name} */\n\n`;
+                if (addFile(name, content)) {
+                    modalFileOverlay.classList.remove('active');
+                }
+            });
 
-        addFileBtn.addEventListener('click', () => {
-            newFileName.value = '';
-            newFileContent.value = '';
-            modalFileOverlay.classList.add('active');
-            setTimeout(() => newFileName.focus(), 100);
-        });
+            codeEditor.addEventListener('input', () => {
+                const content = codeEditor.innerText;
+                if (state.files[state.activeFile] !== undefined) {
+                    state.files[state.activeFile] = content;
+                }
+                updateLineNumbers();
+            });
 
-        modalFileCancel.addEventListener('click', () => {
-            modalFileOverlay.classList.remove('active');
-        });
+            // ============================
+            //  KEYBOARD SHORTCUTS
+            // ============================
 
-        modalFileOverlay.addEventListener('click', (e) => {
-            if (e.target === modalFileOverlay) modalFileOverlay.classList.remove('active');
-        });
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && document.activeElement === promptInput) {
+                    e.preventDefault();
+                    handleSend();
+                }
+                if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                    e.preventDefault();
+                    runBtn.click();
+                }
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    openApiModal();
+                }
+                if (e.key === 'Escape') {
+                    if (apiModal.classList.contains('active')) closeApiModal();
+                    if (modalFileOverlay.classList.contains('active')) modalFileOverlay.classList.remove('active');
+                    hoverBox.classList.remove('visible');
+                    state.selectedElement = null;
+                    elementInfo.textContent = '📦 Nessun elemento selezionato';
+                }
+                // Tasti per visual editor
+                if (e.key === '1') { document.querySelector('[data-tool="select"]').click();
+                    e.preventDefault(); }
+                if (e.key === '2') { document.querySelector('[data-tool="edit"]').click();
+                    e.preventDefault(); }
+                if (e.key === '3') { document.querySelector('[data-tool="add"]').click();
+                    e.preventDefault(); }
+                if (e.key === '4') { document.querySelector('[data-tool="delete"]').click();
+                    e.preventDefault(); }
+            });
 
-        modalFileConfirm.addEventListener('click', () => {
-            let name = newFileName.value.trim();
-            if (!name) {
-                showToast('Inserisci un nome file', 'error');
-                return;
-            }
-            if (!name.includes('.')) name += '.txt';
-            const content = newFileContent.value || `/* ${name} */\n\n`;
-            if (addFile(name, content)) {
-                modalFileOverlay.classList.remove('active');
-            }
-        });
+            // ============================
+            //  INIT
+            // ============================
 
-        codeEditor.addEventListener('input', () => {
-            const content = codeEditor.innerText;
-            if (state.files[state.activeFile] !== undefined) {
-                state.files[state.activeFile] = content;
-            }
-            updateLineNumbers();
-        });
+            if (!state.files['App.jsx']) {
+                state.files['App.jsx'] = `import React, { useState } from 'react';
+        import './index.css';
 
-        // ============================
-        //  KEYBOARD SHORTCUTS
-        // ============================
+        function App() {
+          const [count, setCount] = useState(0);
 
-        document.addEventListener('keydown', (e) => {
-            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && document.activeElement === promptInput) {
-                e.preventDefault();
-                handleSend();
-            }
-            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-                e.preventDefault();
-                runBtn.click();
-            }
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                openApiModal();
-            }
-            if (e.key === 'Escape') {
-                if (apiModal.classList.contains('active')) closeApiModal();
-                if (modalFileOverlay.classList.contains('active')) modalFileOverlay.classList.remove('active');
-            }
-        });
-
-        // ============================
-        //  INIZIALIZZAZIONE
-        // ============================
-
-        // Assicura file base
-        if (!state.files['index.html']) {
-            state.files['index.html'] = `<!DOCTYPE html>
-        <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>AppForge</title><link rel="stylesheet" href="style.css"></head>
-        <body><div id="app"><h1>✨ Benvenuto!</h1><p>Inizia a creare la tua app.</p><button id="btn">Clicca</button>
-        <script src="script.js"><\/script></div></body></html>`;
-        }
-        if (!state.files['style.css']) {
-            state.files['style.css'] = `*{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:system-ui;display:flex;justify-content:center;align-items:center;min-height:100vh;background:linear-gradient(135deg,#f0f0f5,#e8e8f0)}
-        #app{background:white;padding:30px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.08);text-align:center;width:100%;max-width:400px;margin:20px}
-        h1{color:#1a1a2e;font-size:24px;margin-bottom:10px}
-        p{color:#4a4a5a;margin-bottom:16px}
-        button{padding:12px 28px;border:none;border-radius:12px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;font-weight:600;font-size:15px;cursor:pointer;transition:0.2s}
-        button:active{transform:scale(0.96)}`;
-        }
-        if (!state.files['script.js']) {
-            state.files['script.js'] = `document.addEventListener('DOMContentLoaded',()=>{
-        document.getElementById('btn')?.addEventListener('click',()=>{
-        alert('Ciao da AppForge!');
-        });
-        });`;
+          return (
+            <div className="container">
+              <h1>🚀 Lovable Pro</h1>
+              <p>App full-stack con React + Supabase</p>
+              <div className="counter">
+                <button onClick={() => setCount(count - 1)}>-</button>
+                <span>{count}</span>
+                <button onClick={() => setCount(count + 1)}>+</button>
+              </div>
+            </div>
+          );
         }
 
-        state.activeFile = 'index.html';
-        updateApiStatus();
-        updateFileTabs();
-        updateEditor();
-        updatePreview();
-        updateFileCount();
-        setLiveStatus('⏳ In attesa...', 'idle');
+        export default App;`;
+            }
+            if (!state.files['index.css']) {
+                state.files['index.css'] = `* { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui; background: linear-gradient(135deg, #f0f0f5, #e8e8f0); display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.08); text-align: center; width: 100%; max-width: 400px; }
+        h1 { color: #1a1a2e; margin-bottom: 10px; }
+        p { color: #4a4a5a; margin-bottom: 20px; }
+        .counter { display: flex; gap: 16px; justify-content: center; align-items: center; }
+        .counter button { padding: 12px 24px; border: none; border-radius: 12px; background: #6366f1; color: white; font-size: 20px; font-weight: 700; cursor: pointer; }
+        .counter button:hover { background: #4f46e5; }
+        .counter span { font-size: 28px; font-weight: 700; color: #1a1a2e; min-width: 40px; }`;
+            }
+            if (!state.files['supabase.js']) {
+                state.files['supabase.js'] = `import { createClient } from '@supabase/supabase-js';
 
-        // Se la chiave non è configurata, mostra la modale dopo 2s
-        if (!hasValidApiKey()) {
-            setTimeout(() => openApiModal(), 2000);
-        }
+        const supabaseUrl = 'https://your-project.supabase.co';
+        const supabaseKey = 'your-anon-key';
 
-        promptInput.focus();
+        export const supabase = createClient(supabaseUrl, supabaseKey);`;
+            }
 
-        console.log('🚀 AppForge Mobile ottimizzata!');
-        console.log('📁 File:', Object.keys(state.files));
-        console.log('🔑 API:', hasValidApiKey() ? '✅' : '❌');
-        console.log('💡 Suggerimenti: tap sui chip per esempi rapidi!');
-    })();
-</script>
+            state.activeFile = 'App.jsx';
+            updateApiStatus();
+            updateFileTabs();
+            updateEditor();
+            updatePreview();
+            updateFileCount();
+            setLiveStatus('⏳ In attesa...', 'idle');
+            setAgentStep(0);
+
+            // Attiva selezione
+            selectionOverlay.classList.add('active');
+
+            if (!hasValidApiKey()) {
+                setTimeout(() => openApiModal(), 2000);
+            }
+
+            promptInput.focus();
+
+            console.log('🚀 Lovable Pro - Full-Stack AI Builder');
+            console.log('📁 File:', Object.keys(state.files));
+            console.log('🔑 API:', hasValidApiKey() ? '✅' : '❌');
+            console.log('💡 Stack: React + Supabase + Tailwind');
+            console.log('🎨 Visual Editor: Tasti 1-4 per strumenti');
+        })();
+    </script>
 </body>
 </html>
