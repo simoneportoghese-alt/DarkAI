@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        /* ===== RESET & VARIABILI ===== */
+        /* ===== DESIGN iOS PREMIUM ===== */
         * {
             margin: 0;
             padding: 0;
@@ -62,7 +62,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar {
             width: 3px;
             height: 3px;
@@ -74,11 +73,7 @@
             background: #2a2a3e;
             border-radius: 10px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3a3a5e;
-        }
 
-        /* ===== APP CONTAINER ===== */
         .app-container {
             display: flex;
             flex-direction: column;
@@ -86,25 +81,9 @@
             height: 100dvh;
             overflow: hidden;
             background: var(--bg-primary);
-            position: relative;
         }
 
-        /* ===== GLASS EFFECT ===== */
-        .glass {
-            background: rgba(22, 22, 37, 0.7);
-            backdrop-filter: blur(20px) saturate(1.4);
-            -webkit-backdrop-filter: blur(20px) saturate(1.4);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .glass-light {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(12px) saturate(1.2);
-            -webkit-backdrop-filter: blur(12px) saturate(1.2);
-            border: 1px solid var(--border-color);
-        }
-
-        /* ===== HEADER ===== */
+        /* HEADER */
         .header {
             padding: 10px 16px 8px;
             display: flex;
@@ -137,7 +116,6 @@
             gap: 8px;
             letter-spacing: -0.5px;
         }
-
         .logo i {
             -webkit-text-fill-color: initial;
             color: var(--accent-light);
@@ -178,11 +156,9 @@
             font-family: var(--font);
             letter-spacing: -0.2px;
         }
-
         .btn:hover {
             background: rgba(255, 255, 255, 0.08);
         }
-
         .btn:active {
             transform: scale(0.96);
         }
@@ -192,14 +168,21 @@
             color: white;
             box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
         }
-
         .btn-primary:hover {
             box-shadow: 0 6px 30px rgba(99, 102, 241, 0.4);
             transform: translateY(-1px);
         }
-
         .btn-primary:active {
             transform: scale(0.96);
+        }
+
+        .btn-success {
+            background: var(--success-soft);
+            color: var(--success);
+            border: 1px solid rgba(34, 197, 94, 0.15);
+        }
+        .btn-success:hover {
+            background: rgba(34, 197, 94, 0.2);
         }
 
         .btn-icon {
@@ -212,27 +195,15 @@
             border-radius: var(--radius-sm);
             transition: all 0.2s;
         }
-
         .btn-icon:hover {
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-primary);
         }
-
         .btn-icon:active {
             transform: scale(0.92);
         }
 
-        .btn-success {
-            background: var(--success-soft);
-            color: var(--success);
-            border: 1px solid rgba(34, 197, 94, 0.15);
-        }
-
-        .btn-success:hover {
-            background: rgba(34, 197, 94, 0.2);
-        }
-
-        /* ===== STATUS BAR ===== */
+        /* STATUS BAR */
         .status-bar {
             padding: 4px 16px;
             display: flex;
@@ -260,18 +231,15 @@
             flex-shrink: 0;
             transition: all 0.3s;
         }
-
         .status-dot.online {
             background: var(--success);
             box-shadow: 0 0 12px rgba(34, 197, 94, 0.3);
         }
-
         .status-dot.generating {
             background: var(--warning);
             animation: pulse-dot 0.8s infinite;
             box-shadow: 0 0 16px rgba(251, 191, 36, 0.3);
         }
-
         .status-dot.offline {
             background: var(--danger);
             box-shadow: 0 0 12px rgba(239, 68, 68, 0.2);
@@ -296,18 +264,16 @@
             font-size: 10px;
             color: var(--text-tertiary);
         }
-
         .status-right span {
             display: flex;
             align-items: center;
             gap: 4px;
         }
-
         .status-right i {
             font-size: 11px;
         }
 
-        /* ===== AGENT BAR ===== */
+        /* AGENT BAR */
         .agent-bar {
             padding: 6px 16px;
             display: flex;
@@ -319,9 +285,7 @@
             border-bottom: 1px solid var(--border-color);
             overflow-x: auto;
             scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
         }
-
         .agent-bar::-webkit-scrollbar {
             display: none;
         }
@@ -336,7 +300,6 @@
             white-space: nowrap;
             padding: 4px 2px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
         }
 
         .agent-step .num {
@@ -354,41 +317,35 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(255, 255, 255, 0.04);
         }
-
         .agent-step.active .num {
             background: var(--accent-gradient);
             color: white;
             border-color: var(--accent);
             box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
         }
-
         .agent-step.done .num {
             background: var(--success);
             color: white;
             border-color: var(--success);
             box-shadow: 0 4px 20px rgba(34, 197, 94, 0.2);
         }
-
         .agent-step.active {
             color: var(--text-primary);
         }
-
         .agent-step.done {
             color: var(--text-secondary);
         }
-
         .agent-step .arrow {
             color: var(--text-tertiary);
             font-size: 10px;
             opacity: 0.4;
             margin: 0 2px;
         }
-
         .agent-step:last-child .arrow {
             display: none;
         }
 
-        /* ===== MOBILE TABS ===== */
+        /* MOBILE TABS */
         .mobile-tabs {
             display: flex;
             background: rgba(10, 10, 18, 0.9);
@@ -399,10 +356,8 @@
             padding: 0 12px;
             overflow-x: auto;
             scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
             gap: 2px;
         }
-
         .mobile-tabs::-webkit-scrollbar {
             display: none;
         }
@@ -419,26 +374,21 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            position: relative;
+            min-height: 44px;
             font-family: var(--font);
             letter-spacing: -0.2px;
-            min-height: 44px;
         }
-
         .mobile-tab i {
             font-size: 14px;
             transition: all 0.3s;
         }
-
         .mobile-tab.active {
             color: var(--text-primary);
             border-bottom-color: var(--accent);
         }
-
         .mobile-tab.active i {
             color: var(--accent-light);
         }
-
         .mobile-tab .tab-badge {
             font-size: 9px;
             background: var(--accent-gradient-soft);
@@ -447,18 +397,16 @@
             border-radius: 20px;
             font-weight: 600;
         }
-
         .mobile-tab:active {
             transform: scale(0.96);
         }
 
-        /* ===== PANELS ===== */
+        /* PANELS */
         .panels-container {
             flex: 1;
             overflow: hidden;
             position: relative;
         }
-
         .panel {
             position: absolute;
             inset: 0;
@@ -468,7 +416,6 @@
             background: var(--bg-primary);
             animation: panelSlide 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .panel.active {
             display: flex;
         }
@@ -484,7 +431,7 @@
             }
         }
 
-        /* ===== CHAT PANEL ===== */
+        /* CHAT PANEL */
         .chat-panel {
             background: var(--bg-secondary);
         }
@@ -498,7 +445,6 @@
             flex-shrink: 0;
             background: rgba(10, 10, 18, 0.4);
         }
-
         .chat-header span {
             font-size: 12px;
             font-weight: 600;
@@ -507,7 +453,6 @@
             align-items: center;
             gap: 8px;
         }
-
         .chat-header .model-badge {
             font-size: 9px;
             font-weight: 500;
@@ -576,7 +521,6 @@
             align-items: center;
             gap: 6px;
         }
-
         .message .role-label.user-label {
             color: rgba(255, 255, 255, 0.6);
         }
@@ -592,9 +536,7 @@
             border: 1px solid rgba(255, 255, 255, 0.04);
             max-height: 200px;
             overflow-y: auto;
-            position: relative;
         }
-
         .message .code-block .file-label {
             font-size: 9px;
             color: var(--text-tertiary);
@@ -606,7 +548,6 @@
             font-family: var(--font);
             font-weight: 500;
         }
-
         .message .code-block code {
             white-space: pre-wrap;
             word-break: break-word;
@@ -622,7 +563,6 @@
             align-items: center;
             gap: 8px;
         }
-
         .message .status-message .spinner {
             animation: spin 1s linear infinite;
         }
@@ -646,7 +586,6 @@
             border: 1px solid var(--border-color);
             border-bottom-left-radius: 4px;
         }
-
         .typing-indicator span {
             width: 6px;
             height: 6px;
@@ -654,7 +593,6 @@
             border-radius: 50%;
             animation: typing-bounce 1.4s infinite;
         }
-
         .typing-indicator span:nth-child(2) {
             animation-delay: 0.2s;
         }
@@ -695,13 +633,11 @@
             border-radius: var(--radius-md);
             transition: all 0.2s;
         }
-
         .chat-input-wrapper:focus-within {
             border-color: var(--accent);
             background: rgba(255, 255, 255, 0.06);
             box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.05);
         }
-
         .chat-input-wrapper textarea {
             flex: 1;
             background: transparent;
@@ -717,7 +653,6 @@
             line-height: 1.5;
             -webkit-appearance: none;
         }
-
         .chat-input-wrapper textarea::placeholder {
             color: var(--text-tertiary);
             font-size: 13px;
@@ -739,18 +674,16 @@
             justify-content: center;
             margin: 4px;
         }
-
         .btn-send:active {
             transform: scale(0.92);
         }
-
         .btn-send:disabled {
             opacity: 0.4;
             cursor: not-allowed;
             transform: none;
         }
 
-        /* ===== SUGGESTION CHIPS ===== */
+        /* SUGGESTION CHIPS */
         .suggestion-chips {
             display: flex;
             gap: 6px;
@@ -760,9 +693,7 @@
             background: rgba(10, 10, 18, 0.4);
             border-top: 1px solid var(--border-color);
             scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
         }
-
         .suggestion-chips::-webkit-scrollbar {
             display: none;
         }
@@ -781,27 +712,23 @@
             flex-shrink: 0;
             font-family: var(--font);
         }
-
         .chip:hover {
             background: rgba(99, 102, 241, 0.2);
             transform: translateY(-1px);
         }
-
         .chip:active {
             transform: scale(0.94);
         }
-
         .chip i {
             font-size: 9px;
             margin-right: 4px;
             opacity: 0.7;
         }
 
-        /* ===== PREVIEW PANEL ===== */
+        /* PREVIEW */
         .preview-panel {
             background: #ffffff;
         }
-
         .preview-header {
             background: rgba(244, 244, 248, 0.95);
             backdrop-filter: blur(10px);
@@ -814,7 +741,6 @@
             flex-shrink: 0;
             min-height: 34px;
         }
-
         .preview-header span {
             color: #3a3a4a;
             font-size: 10px;
@@ -823,7 +749,6 @@
             align-items: center;
             gap: 6px;
         }
-
         .preview-header .dot {
             width: 6px;
             height: 6px;
@@ -831,7 +756,6 @@
             background: var(--success);
             display: inline-block;
         }
-
         .preview-header .dot.generating {
             background: var(--warning);
             animation: pulse-dot 0.5s infinite;
@@ -839,7 +763,6 @@
         .preview-header .dot.error {
             background: var(--danger);
         }
-
         .preview-header .url-bar {
             background: white;
             border-radius: 6px;
@@ -856,7 +779,6 @@
             align-items: center;
             gap: 6px;
         }
-
         .preview-header .url-bar i {
             font-size: 9px;
             color: var(--success);
@@ -868,14 +790,12 @@
             overflow: hidden;
             position: relative;
         }
-
         .preview-frame iframe {
             width: 100%;
             height: 100%;
             border: none;
             background: white;
         }
-
         .preview-frame .empty-preview {
             display: flex;
             flex-direction: column;
@@ -889,18 +809,15 @@
             padding: 20px;
             text-align: center;
         }
-
         .preview-frame .empty-preview i {
             font-size: 36px;
             color: #d0d0da;
             margin-bottom: 4px;
         }
-
         .preview-frame .empty-preview .empty-sub {
             font-size: 11px;
             color: #b0b0ba;
         }
-
         .preview-frame .empty-preview .btn {
             margin-top: 8px;
             padding: 8px 20px;
@@ -913,7 +830,7 @@
             cursor: pointer;
         }
 
-        /* ===== TOAST ===== */
+        /* TOAST */
         .toast {
             position: fixed;
             bottom: 80px;
@@ -964,153 +881,7 @@
             color: var(--accent-light);
         }
 
-        /* ===== MODALE CONFIG ===== */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(16px) saturate(1.2);
-            -webkit-backdrop-filter: blur(16px) saturate(1.2);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 20px;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 24px 28px 20px;
-            width: 100%;
-            max-width: 380px;
-            box-shadow: var(--shadow-lg);
-            max-height: 90vh;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            animation: modalIn 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95) translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        .modal h2 {
-            font-size: 18px;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-        }
-
-        .modal p {
-            color: var(--text-secondary);
-            font-size: 13px;
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        .modal .form-group {
-            margin-bottom: 12px;
-        }
-
-        .modal .form-group label {
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .modal .form-group input {
-            width: 100%;
-            padding: 10px 14px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            color: var(--text-primary);
-            font-size: 13px;
-            outline: none;
-            transition: all 0.2s;
-            font-family: var(--font);
-            -webkit-appearance: none;
-        }
-
-        .modal .form-group input:focus {
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.06);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.05);
-        }
-
-        .modal .form-group .helper {
-            font-size: 10px;
-            color: var(--text-tertiary);
-            margin-top: 4px;
-        }
-
-        .modal .form-group .helper a {
-            color: var(--accent-light);
-            text-decoration: none;
-        }
-
-        .modal .api-status {
-            padding: 8px 12px;
-            border-radius: var(--radius-sm);
-            font-size: 11px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid transparent;
-        }
-
-        .modal .api-status.success {
-            background: var(--success-soft);
-            color: var(--success);
-            border-color: rgba(34, 197, 94, 0.15);
-        }
-        .modal .api-status.error {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
-            border-color: rgba(239, 68, 68, 0.15);
-        }
-        .modal .api-status.info {
-            background: var(--accent-gradient-soft);
-            color: var(--accent-light);
-            border-color: rgba(99, 102, 241, 0.15);
-        }
-
-        .modal .form-actions {
-            display: flex;
-            gap: 8px;
-            justify-content: flex-end;
-            margin-top: 16px;
-            flex-wrap: wrap;
-        }
-
-        .modal .form-actions .btn {
-            padding: 8px 18px;
-            font-size: 12px;
-            min-height: 38px;
-            justify-content: center;
-        }
-
-        /* ===== RESPONSIVE ===== */
+        /* RESPONSIVE */
         @media (max-width: 480px) {
             .header {
                 padding: 6px 12px;
@@ -1168,9 +939,6 @@
                 width: 18px;
                 height: 18px;
                 font-size: 8px;
-            }
-            .modal {
-                padding: 18px 16px;
             }
             .suggestion-chips {
                 padding: 4px 10px 8px;
@@ -1274,7 +1042,7 @@
 
     <div class="app-container">
 
-        <!-- ===== HEADER ===== -->
+        <!-- HEADER -->
         <header class="header">
             <div class="header-left">
                 <div class="logo">
@@ -1289,26 +1057,22 @@
                 <button class="btn-icon" id="resetBtn" title="Nuova conversazione">
                     <i class="fas fa-plus-circle"></i>
                 </button>
-                <button class="btn-icon" id="configBadge" title="Configurazione">
-                    <i class="fas fa-sliders-h"></i>
-                </button>
             </div>
         </header>
 
-        <!-- ===== STATUS BAR ===== -->
+        <!-- STATUS BAR -->
         <div class="status-bar">
             <div class="status-left">
                 <span class="status-dot online" id="statusDot"></span>
                 <span id="liveStatusText">Pronto... Descrivi un'app</span>
             </div>
             <div class="status-right">
-                <span><i class="fas fa-server"></i> <span id="currentApiLabel">Ollama</span></span>
+                <span><i class="fas fa-server"></i> <span id="currentApiLabel">⚡ Locale</span></span>
                 <span><i class="fas fa-files"></i> <span id="fileCount">3</span></span>
-                <span><i class="fas fa-database"></i> <span id="tokenCount">0</span></span>
             </div>
         </div>
 
-        <!-- ===== AGENT BAR ===== -->
+        <!-- AGENT BAR -->
         <div class="agent-bar" id="agentBar">
             <div class="agent-step active" data-step="plan">
                 <span class="num">1</span> Piano
@@ -1327,7 +1091,7 @@
             </div>
         </div>
 
-        <!-- ===== MOBILE TABS ===== -->
+        <!-- MOBILE TABS -->
         <div class="mobile-tabs" id="mobileTabs">
             <div class="mobile-tab active" data-panel="chat">
                 <i class="fas fa-comment-dots"></i> Chat
@@ -1338,16 +1102,16 @@
             </div>
         </div>
 
-        <!-- ===== PANELS ===== -->
+        <!-- PANELS -->
         <div class="panels-container">
 
-            <!-- CHAT PANEL -->
+            <!-- CHAT -->
             <div class="panel chat-panel active" id="panelChat">
                 <div class="chat-header">
                     <span>
                         <i class="fas fa-robot" style="color:var(--accent-light);"></i>
                         Assistente AI
-                        <span class="model-badge" id="modelBadge">Ollama</span>
+                        <span class="model-badge" id="modelBadge">⚡ Locale</span>
                     </span>
                     <span style="font-size:10px;color:var(--text-tertiary);">
                         <i class="fas fa-bolt"></i> Gratis
@@ -1366,7 +1130,7 @@
                         <br/><br/>
                         <span style="font-size:11px;color:var(--text-tertiary);display:flex;align-items:center;gap:6px;">
                             <i class="fas fa-shield-alt" style="color:var(--success);"></i>
-                            Motore: <span id="welcomeApiLabel">Ollama</span> (locale, gratuito)
+                            Funziona subito, senza configurazioni!
                         </span>
                     </div>
                 </div>
@@ -1401,7 +1165,7 @@
                 </div>
             </div>
 
-            <!-- PREVIEW PANEL -->
+            <!-- PREVIEW -->
             <div class="panel preview-panel" id="panelPreview">
                 <div class="preview-header">
                     <span>
@@ -1429,163 +1193,89 @@
         </div>
     </div>
 
-    <!-- ===== MODALE CONFIGURAZIONE ===== -->
-    <div class="modal-overlay" id="configModal">
-        <div class="modal">
-            <h2><i class="fas fa-sliders-h" style="color:var(--accent-light);"></i> Configurazione</h2>
-            <p>Ollama è il motore gratuito e locale. Nessuna chiave necessaria!</p>
-
-            <div class="api-status info" id="configStatus">
-                <i class="fas fa-info-circle"></i>
-                <span>Ollama funziona localmente. Tutto è gratuito.</span>
-            </div>
-
-            <div class="form-group">
-                <label>🏠 Endpoint Ollama</label>
-                <input type="text" id="ollamaEndpoint" value="http://localhost:11434/api/generate" />
-                <div class="helper">Lascia default se Ollama è in esecuzione</div>
-            </div>
-
-            <div class="form-group">
-                <label>📦 Modello</label>
-                <input type="text" id="ollamaModel" value="codellama" />
-                <div class="helper">codellama, llama3.2, mistral, ecc.</div>
-            </div>
-
-            <div class="api-status" id="ollamaStatus" style="background:var(--accent-gradient-soft);color:var(--accent-light);border-color:rgba(99,102,241,0.15);">
-                <i class="fas fa-circle" style="font-size:8px;color:var(--warning);"></i>
-                <span id="ollamaStatusText">Verifica connessione...</span>
-            </div>
-
-            <div class="form-actions">
-                <button class="btn" id="configCancel">Annulla</button>
-                <button class="btn btn-primary" id="configSave">
-                    <i class="fas fa-save"></i> Salva
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== SCRIPTS ===== -->
     <script>
         // ============================================================
-        //  APP COMPLETA - DESIGN iOS PREMIUM
-        //  Senza chiavi, usa Ollama + Fallback
+        //  APP FUNZIONANTE - SENZA API, SENZA CHIAVI
+        //  Genera codice immediatamente con template predefiniti
         // ============================================================
 
         (function() {
             'use strict';
 
             // ============================
-            //  CONFIGURAZIONE
+            //  STATO
             // ============================
 
-            function getOllamaConfig() {
-                return {
-                    endpoint: sessionStorage.getItem('ollama_endpoint') || 'http://localhost:11434/api/generate',
-                    model: sessionStorage.getItem('ollama_model') || 'codellama'
-                };
-            }
-
-            function saveOllamaConfig(endpoint, model) {
-                sessionStorage.setItem('ollama_endpoint', endpoint);
-                sessionStorage.setItem('ollama_model', model);
-            }
-
-            // ============================
-            //  OLLAMA PROVIDER
-            // ============================
-
-            class OllamaProvider {
-                constructor() {
-                    this.name = 'Ollama';
-                    this.available = false;
-                    this.tested = false;
-                    this.config = getOllamaConfig();
-                }
-
-                async test() {
-                    try {
-                        const resp = await fetch(this.config.endpoint, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                model: this.config.model,
-                                prompt: 'Ciao',
-                                stream: false
-                            })
-                        });
-                        this.available = resp.ok;
-                        this.tested = true;
-                        return this.available;
-                    } catch {
-                        this.available = false;
-                        this.tested = true;
-                        return false;
-                    }
-                }
-
-                getSystemPrompt() {
-                    return `Sei un assistente esperto in sviluppo web full-stack.
-
-        STACK TECNOLOGICO (FISSO):
-        - Frontend: HTML5, CSS3, JavaScript Vanilla
-        - Design: Moderno, responsive, mobile-first
-
-        REGOLE:
-        1. Genera codice auto-contenuto e funzionante.
-        2. Organizza in file separati: index.html, style.css, script.js.
-        3. Usa design elegante con gradienti, ombre e animazioni fluide.
-        4. Aggiungi commenti utili.
-
-        Formato risposta con blocchi markdown:
-        \`\`\`html
-        <!-- index.html -->
-        <!DOCTYPE html>...
-        \`\`\`
-        \`\`\`css
-        /* style.css */
-        ...
-        \`\`\`
-        \`\`\`js
-        // script.js
-        ...
-        \`\`\``;
-                }
-
-                async generate(prompt, context = '') {
-                    const fullPrompt =
-                        `${this.getSystemPrompt()}\n\n${context}\n\nGenera il codice per: ${prompt}`;
-
-                    const resp = await fetch(this.config.endpoint, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            model: this.config.model,
-                            prompt: fullPrompt,
-                            stream: false,
-                            temperature: 0.3,
-                            max_tokens: 4096
-                        })
-                    });
-
-                    if (!resp.ok) throw new Error(`Ollama error: ${resp.status}`);
-                    const data = await resp.json();
-                    return data.response;
-                }
-            }
+            const state = {
+                files: {
+                    'index.html': `<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>App</title>
+            <link rel="stylesheet" href="style.css" />
+        </head>
+        <body>
+            <div id="app">
+                <h1>✨ Ciao, mondo!</h1>
+                <p>App generata con AppForge</p>
+                <button id="btnClick">Cliccami</button>
+            </div>
+            <script src="script.js"><\/script>
+        </body>
+        </html>`,
+                    'style.css': `*{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:system-ui;display:flex;justify-content:center;align-items:center;min-height:100vh;background:linear-gradient(135deg,#f0f0f5,#e8e8f0);margin:0}
+        #app{background:white;padding:30px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.08);text-align:center;width:100%;max-width:400px;margin:20px}
+        h1{color:#1a1a2e;font-size:24px;margin-bottom:10px}
+        p{color:#4a4a5a;margin-bottom:16px}
+        button{padding:12px 28px;border:none;border-radius:12px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;font-weight:600;font-size:15px;cursor:pointer;transition:0.2s}
+        button:active{transform:scale(0.96)}`,
+                    'script.js': `document.addEventListener('DOMContentLoaded',()=>{
+        document.getElementById('btnClick')?.addEventListener('click',()=>{
+        alert('👋 Ciao da AppForge!');
+        });
+        });`
+                },
+                activeFile: 'index.html',
+                isGenerating: false
+            };
 
             // ============================
-            //  FALLBACK LOCALE
+            //  DOM REFS
             // ============================
 
-            function generateFallbackCode(prompt) {
+            const chatMessages = document.getElementById('chatMessages');
+            const promptInput = document.getElementById('promptInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const previewFrame = document.getElementById('previewFrame');
+            const emptyPreview = document.getElementById('emptyPreview');
+            const liveAppContainer = document.getElementById('liveAppContainer');
+            const runBtn = document.getElementById('runBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const liveStatusText = document.getElementById('liveStatusText');
+            const statusDot = document.getElementById('statusDot');
+            const previewDot = document.getElementById('previewDot');
+            const previewStatus = document.getElementById('previewStatus');
+            const previewUrl = document.getElementById('previewUrl');
+            const fileCount = document.getElementById('fileCount');
+            const agentSteps = document.querySelectorAll('.agent-step');
+            const mobileTabs = document.querySelectorAll('.mobile-tab');
+            const chips = document.querySelectorAll('.chip');
+
+            // ============================
+            //  GENERAZIONE CODICE (TEMPLATE)
+            // ============================
+
+            function generateAppCode(prompt) {
                 const lower = prompt.toLowerCase();
                 let html = '',
                     css = '',
                     js = '';
 
-                if (lower.includes('todo') || lower.includes('lista')) {
+                // Rileva il tipo di app richiesta
+                if (lower.includes('todo') || lower.includes('lista') || lower.includes('task')) {
                     html = `<!DOCTYPE html>
         <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Todo List</title><link rel="stylesheet" href="style.css"></head>
         <body><div id="app"><h1>📋 Todo List</h1>
@@ -1607,7 +1297,7 @@
         #counter{color:#8a8a9a;font-size:12px;margin-top:10px}`;
                     js =
                         `document.addEventListener('DOMContentLoaded',()=>{const input=document.getElementById('todoInput');const addBtn=document.getElementById('addBtn');const list=document.getElementById('todoList');const counter=document.getElementById('counter');let todos=JSON.parse(localStorage.getItem('todos')||'[]');function render(){list.innerHTML='';todos.forEach((t,i)=>{const li=document.createElement('li');li.innerHTML=\`<span>\${t}</span><span class="delete" data-index="\${i}">✕</span>\`;list.appendChild(li);});counter.textContent=\`Totale: \${todos.length}\`;localStorage.setItem('todos',JSON.stringify(todos));}addBtn.addEventListener('click',()=>{const val=input.value.trim();if(val){todos.push(val);input.value='';render();}});input.addEventListener('keydown',e=>{if(e.key==='Enter')addBtn.click();});list.addEventListener('click',e=>{if(e.target.classList.contains('delete')){const idx=parseInt(e.target.dataset.index);todos.splice(idx,1);render();}});render();});`;
-                } else if (lower.includes('timer')) {
+                } else if (lower.includes('timer') || lower.includes('cronometro')) {
                     html = `<!DOCTYPE html>
         <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Timer</title><link rel="stylesheet" href="style.css"></head>
         <body><div id="app"><h1>⏱️ Timer</h1><div id="display">00:00</div>
@@ -1656,7 +1346,38 @@
         .eq:hover{background:#16a34a}`;
                     js =
                         `let display=document.getElementById('display');let current='0',prev=null,op=null,reset=false;function update(){display.textContent=current;}document.querySelectorAll('.num').forEach(b=>b.addEventListener('click',()=>{if(reset){current='';reset=false;}if(current==='0')current='';current+=b.textContent;if(current.length>12)current=current.slice(0,12);update();}));document.querySelectorAll('.op').forEach(b=>b.addEventListener('click',()=>{if(op!==null)calculate();prev=parseFloat(current);op=b.textContent;reset=true;}));document.querySelector('.eq').addEventListener('click',()=>{if(op!==null)calculate();});document.querySelector('.clear').addEventListener('click',()=>{current='0';prev=null;op=null;reset=false;update();});function calculate(){if(prev===null||op===null)return;const curr=parseFloat(current);let result=0;switch(op){case'+':result=prev+curr;break;case'-':result=prev-curr;break;case'*':result=prev*curr;break;case'/':result=curr!==0?prev/curr:'Error';break;}if(result==='Error'){current='Error';}else{current=String(Math.round(result*1000)/1000);}prev=null;op=null;reset=true;update();}`;
+                } else if (lower.includes('password') || lower.includes('generatore')) {
+                    html = `<!DOCTYPE html>
+        <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Generatore Password</title><link rel="stylesheet" href="style.css"></head>
+        <body><div id="app"><h1>🔑 Generatore Password</h1>
+        <div id="passwordDisplay">••••••••</div>
+        <div class="options"><label>Lunghezza: <input type="range" id="lengthSlider" min="4" max="32" value="12"><span id="lengthLabel">12</span></label>
+        <label><input type="checkbox" id="includeUpper" checked> Maiuscole</label>
+        <label><input type="checkbox" id="includeNumbers" checked> Numeri</label>
+        <label><input type="checkbox" id="includeSymbols" checked> Simboli</label></div>
+        <button id="generateBtn">🔄 Genera</button>
+        <button id="copyBtn">📋 Copia</button>
+        <script src="script.js"><\/script></div></body></html>`;
+                    css = `*{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:system-ui;display:flex;justify-content:center;align-items:center;min-height:100vh;background:linear-gradient(135deg,#1a1a2e,#2a1a3e)}
+        #app{background:#12121e;padding:30px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.5);width:100%;max-width:400px;text-align:center}
+        h1{color:#e0e0e0;font-size:22px;margin-bottom:20px}
+        #passwordDisplay{background:#0a0a12;color:#f0f0f0;font-size:28px;padding:16px;border-radius:12px;font-family:'JetBrains Mono',monospace;margin-bottom:16px;word-break:break-all;min-height:60px;display:flex;align-items:center;justify-content:center}
+        .options{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;text-align:left;color:#e0e0e0}
+        .options label{display:flex;align-items:center;gap:10px;font-size:14px}
+        .options input[type="range"]{flex:1;accent-color:#6366f1}
+        .options input[type="checkbox"]{width:18px;height:18px;accent-color:#6366f1}
+        .options span{min-width:30px;text-align:center}
+        button{padding:12px 20px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:0.15s;margin:4px}
+        button:active{transform:scale(0.94)}
+        #generateBtn{background:#6366f1;color:white}
+        #generateBtn:hover{background:#4f46e5}
+        #copyBtn{background:#22c55e;color:white}
+        #copyBtn:hover{background:#16a34a}`;
+                    js =
+                        `const display=document.getElementById('passwordDisplay');const lengthSlider=document.getElementById('lengthSlider');const lengthLabel=document.getElementById('lengthLabel');const includeUpper=document.getElementById('includeUpper');const includeNumbers=document.getElementById('includeNumbers');const includeSymbols=document.getElementById('includeSymbols');const generateBtn=document.getElementById('generateBtn');const copyBtn=document.getElementById('copyBtn');const lower='abcdefghijklmnopqrstuvwxyz';const upper='ABCDEFGHIJKLMNOPQRSTUVWXYZ';const numbers='0123456789';const symbols='!@#$%^&*()_+-=<>?';function generate(){let chars=lower;if(includeUpper.checked)chars+=upper;if(includeNumbers.checked)chars+=numbers;if(includeSymbols.checked)chars+=symbols;let password='';for(let i=0;i<parseInt(lengthSlider.value);i++){password+=chars[Math.floor(Math.random()*chars.length)];}display.textContent=password||'Seleziona opzioni';}lengthSlider.addEventListener('input',()=>{lengthLabel.textContent=lengthSlider.value;generate();});document.querySelectorAll('.options input[type="checkbox"]').forEach(cb=>cb.addEventListener('change',generate));generateBtn.addEventListener('click',generate);copyBtn.addEventListener('click',()=>{if(display.textContent&&display.textContent!=='Seleziona opzioni'){navigator.clipboard?.writeText(display.textContent);alert('📋 Password copiata!');}});generate();`;
                 } else {
+                    // App generica
                     html = `<!DOCTYPE html>
         <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>App</title><link rel="stylesheet" href="style.css"></head>
         <body><div id="app"><h1>✨ ${prompt.substring(0, 30)}</h1><p>${prompt}</p><button id="actionBtn">Azione</button><div id="output"></div>
@@ -1677,191 +1398,26 @@
             }
 
             // ============================
-            //  ENGINE PRINCIPALE
-            // ============================
-
-            class AppEngine {
-                constructor() {
-                    this.ollama = new OllamaProvider();
-                    this.isGenerating = false;
-                    this.files = {
-                        'index.html': '',
-                        'style.css': '',
-                        'script.js': ''
-                    };
-                    this.activeFile = 'index.html';
-                    this.conversationHistory = [];
-                    this.tokenCount = 0;
-                    this.usingOllama = true;
-                }
-
-                async init() {
-                    await this.ollama.test();
-                    if (!this.ollama.available) {
-                        this.usingOllama = false;
-                        showToast('⚠️ Ollama non disponibile, uso fallback locale', 'warning');
-                    } else {
-                        this.usingOllama = true;
-                        showToast('✅ Ollama disponibile!', 'success');
-                    }
-                    this.updateUI();
-                }
-
-                async generate(prompt) {
-                    if (this.isGenerating) return;
-                    this.isGenerating = true;
-
-                    let context = '\n\nCONTESTO PROGETTO ATTUALE:\n';
-                    for (const [name, content] of Object.entries(this.files)) {
-                        if (content) {
-                            context += `\n--- ${name} ---\n${content.substring(0, 500)}${content.length > 500 ? '...' : ''}\n`;
-                        }
-                    }
-
-                    try {
-                        let result;
-                        if (this.usingOllama) {
-                            try {
-                                result = await this.ollama.generate(prompt, context);
-                            } catch (e) {
-                                console.warn('Ollama error, using fallback:', e);
-                                const fallback = generateFallbackCode(prompt);
-                                result =
-                                    `\`\`\`html\n<!-- index.html -->\n${fallback.html}\n\`\`\`\n\n\`\`\`css\n/* style.css */\n${fallback.css}\n\`\`\`\n\n\`\`\`js\n// script.js\n${fallback.js}\n\`\`\``;
-                            }
-                        } else {
-                            const fallback = generateFallbackCode(prompt);
-                            result =
-                                `\`\`\`html\n<!-- index.html -->\n${fallback.html}\n\`\`\`\n\n\`\`\`css\n/* style.css */\n${fallback.css}\n\`\`\`\n\n\`\`\`js\n// script.js\n${fallback.js}\n\`\`\``;
-                        }
-
-                        this.isGenerating = false;
-                        return result;
-
-                    } catch (error) {
-                        this.isGenerating = false;
-                        throw error;
-                    }
-                }
-
-                updateUI() {
-                    const statusLabel = document.getElementById('statusApiLabel');
-                    const currentLabel = document.getElementById('currentApiLabel');
-                    const welcomeLabel = document.getElementById('welcomeApiLabel');
-                    const modelBadge = document.getElementById('modelBadge');
-
-                    if (this.ollama.available) {
-                        const text = 'Ollama ✓';
-                        if (statusLabel) statusLabel.textContent = text;
-                        if (currentLabel) currentLabel.textContent = text;
-                        if (welcomeLabel) welcomeLabel.textContent = 'Ollama';
-                        if (modelBadge) modelBadge.textContent = 'Ollama';
-                    } else {
-                        const text = 'Fallback';
-                        if (statusLabel) statusLabel.textContent = text;
-                        if (currentLabel) currentLabel.textContent = '⚠️ Offline';
-                        if (welcomeLabel) welcomeLabel.textContent = 'Fallback';
-                        if (modelBadge) modelBadge.textContent = 'Fallback';
-                    }
-                }
-
-                updateFiles(blocks) {
-                    for (const [name, content] of Object.entries(blocks)) {
-                        if (content) {
-                            this.files[name] = content;
-                        }
-                    }
-                }
-
-                getFullHtml() {
-                    const html = this.files['index.html'] || '';
-                    const css = this.files['style.css'] || '';
-                    const js = this.files['script.js'] || '';
-
-                    let fullHtml = html;
-                    if (css) {
-                        const styleTag = `<style>/* style.css */\n${css}\n</style>`;
-                        fullHtml = fullHtml.replace(/<link[^>]*style\.css[^>]*>/gi, '');
-                        if (fullHtml.includes('</head>')) {
-                            fullHtml = fullHtml.replace('</head>', `${styleTag}</head>`);
-                        }
-                    }
-                    if (js) {
-                        const scriptTag = `<script>/* script.js */\n${js}\n<\/script>`;
-                        fullHtml = fullHtml.replace(/<script[^>]*script\.js[^>]*><\/script>/gi, '');
-                        if (fullHtml.includes('</body>')) {
-                            fullHtml = fullHtml.replace('</body>', `${scriptTag}</body>`);
-                        }
-                    }
-                    return fullHtml || '<h1>Nessun codice</h1>';
-                }
-            }
-
-            // ============================
-            //  ISTANZA ENGINE
-            // ============================
-
-            const engine = new AppEngine();
-
-            // ============================
-            //  DOM REFS
-            // ============================
-
-            const chatMessages = document.getElementById('chatMessages');
-            const promptInput = document.getElementById('promptInput');
-            const sendBtn = document.getElementById('sendBtn');
-            const previewFrame = document.getElementById('previewFrame');
-            const emptyPreview = document.getElementById('emptyPreview');
-            const liveAppContainer = document.getElementById('liveAppContainer');
-            const runBtn = document.getElementById('runBtn');
-            const resetBtn = document.getElementById('resetBtn');
-            const liveStatusText = document.getElementById('liveStatusText');
-            const statusDot = document.getElementById('statusDot');
-            const headerDot = document.getElementById('headerDot');
-            const previewDot = document.getElementById('previewDot');
-            const previewStatus = document.getElementById('previewStatus');
-            const previewUrl = document.getElementById('previewUrl');
-            const fileCount = document.getElementById('fileCount');
-            const tokenSpan = document.getElementById('tokenCount');
-            const configBadge = document.getElementById('configBadge');
-            const configModal = document.getElementById('configModal');
-            const configCancel = document.getElementById('configCancel');
-            const configSave = document.getElementById('configSave');
-            const configStatus = document.getElementById('configStatus');
-            const ollamaEndpoint = document.getElementById('ollamaEndpoint');
-            const ollamaModel = document.getElementById('ollamaModel');
-            const ollamaStatus = document.getElementById('ollamaStatus');
-            const ollamaStatusText = document.getElementById('ollamaStatusText');
-            const agentSteps = document.querySelectorAll('.agent-step');
-            const mobileTabs = document.querySelectorAll('.mobile-tab');
-            const chips = document.querySelectorAll('.chip');
-
-            // ============================
             //  UI FUNCTIONS
             // ============================
 
             function setLiveStatus(text, type = 'idle') {
                 liveStatusText.textContent = text;
                 statusDot.className = 'status-dot';
-                headerDot.className = 'status-dot';
                 if (type === 'generating') {
                     statusDot.className = 'status-dot generating';
-                    headerDot.className = 'status-dot generating';
                     previewDot.className = 'dot generating';
                     previewStatus.textContent = '⏳ Generazione...';
                 } else if (type === 'error') {
                     statusDot.className = 'status-dot offline';
-                    headerDot.className = 'status-dot offline';
                     previewDot.className = 'dot error';
                     previewStatus.textContent = '❌ Errore';
                 } else if (type === 'done') {
                     statusDot.className = 'status-dot online';
-                    headerDot.className = 'status-dot online';
                     previewDot.className = 'dot';
                     previewStatus.textContent = '✅ Pronta!';
                 } else {
                     statusDot.className = 'status-dot online';
-                    headerDot.className = 'status-dot online';
                     previewDot.className = 'dot';
                     previewStatus.textContent = 'Anteprima';
                 }
@@ -1954,50 +1510,9 @@
                 if (el) el.remove();
             }
 
-            function extractCodeBlocks(text) {
-                const blocks = {};
-                const regex = /```(html|css|js|javascript|json|xml)\s*\n([\s\S]*?)```/gi;
-                let match;
-                while ((match = regex.exec(text)) !== null) {
-                    const lang = match[1].toLowerCase();
-                    let code = match[2].trim();
-                    let filename = '';
-                    const headerMatch = code.match(/^<!--\s*([\w.-]+)\s*-->\s*/);
-                    if (headerMatch) {
-                        filename = headerMatch[1];
-                        code = code.replace(/^<!--\s*[\w.-]+\s*-->\s*/, '');
-                    } else if (lang === 'html') {
-                        filename = 'index.html';
-                    } else if (lang === 'css') {
-                        filename = 'style.css';
-                    } else if (lang === 'js' || lang === 'javascript') {
-                        filename = 'script.js';
-                    }
-                    if (filename && code) blocks[filename] = code;
-                }
-
-                if (Object.keys(blocks).length === 0) {
-                    const genericRegex = /```\s*\n([\s\S]*?)```/g;
-                    let gmatch;
-                    while ((gmatch = genericRegex.exec(text)) !== null) {
-                        const code = gmatch[1].trim();
-                        if (code.includes('<!DOCTYPE') || code.includes('<html')) {
-                            blocks['index.html'] = code;
-                        } else if (code.includes('{') && code.includes('}') && code.includes(':')) {
-                            blocks['style.css'] = code;
-                        } else if (code.includes('function') || code.includes('=>') || code.includes('const ')) {
-                            blocks['script.js'] = code;
-                        } else {
-                            blocks['code.txt'] = code;
-                        }
-                    }
-                }
-                return blocks;
-            }
-
             function updatePreview() {
                 const container = previewFrame;
-                const hasCode = engine.files['index.html'] && engine.files['index.html'].trim().length > 0;
+                const hasCode = state.files['index.html'] && state.files['index.html'].trim().length > 0;
 
                 if (hasCode) {
                     emptyPreview.style.display = 'none';
@@ -2017,13 +1532,30 @@
                     }
 
                     try {
-                        const html = engine.getFullHtml();
+                        let fullHtml = state.files['index.html'];
+                        const css = state.files['style.css'] || '';
+                        if (css) {
+                            const styleTag = `<style>/* style.css */\n${css}\n</style>`;
+                            fullHtml = fullHtml.replace(/<link[^>]*style\.css[^>]*>/gi, '');
+                            if (fullHtml.includes('</head>')) {
+                                fullHtml = fullHtml.replace('</head>', `${styleTag}</head>`);
+                            }
+                        }
+                        const js = state.files['script.js'] || '';
+                        if (js) {
+                            const scriptTag = `<script>/* script.js */\n${js}\n<\/script>`;
+                            fullHtml = fullHtml.replace(/<script[^>]*script\.js[^>]*><\/script>/gi, '');
+                            if (fullHtml.includes('</body>')) {
+                                fullHtml = fullHtml.replace('</body>', `${scriptTag}</body>`);
+                            }
+                        }
+
                         const doc = iframe.contentDocument || iframe.contentWindow.document;
                         doc.open();
-                        doc.write(html);
+                        doc.write(fullHtml);
                         doc.close();
                         previewUrl.textContent = '✅ in esecuzione';
-                        setLiveStatus('✅ App in esecuzione!', 'done');
+                        setLiveStatus('✅ App pronta!', 'done');
                         setAgentStep(3);
                     } catch (e) {
                         console.error('Preview error:', e);
@@ -2036,7 +1568,7 @@
                     previewUrl.textContent = '⏳ in attesa...';
                 }
 
-                const count = Object.values(engine.files).filter(f => f && f.trim().length > 0).length;
+                const count = Object.values(state.files).filter(f => f && f.trim().length > 0).length;
                 fileCount.innerHTML = `<i class="fas fa-files"></i> ${count}`;
             }
 
@@ -2055,68 +1587,56 @@
             //  GENERAZIONE CODICE
             // ============================
 
-            async function generateCode(prompt) {
-                if (engine.isGenerating) return;
-                engine.isGenerating = true;
+            function generateCode(prompt) {
+                if (state.isGenerating) return;
+                state.isGenerating = true;
                 sendBtn.disabled = true;
 
                 setLiveStatus('🔄 Generazione...', 'generating');
                 setAgentStep(0);
 
                 addMessage('user', prompt);
-                engine.conversationHistory.push({ role: 'user', content: prompt });
 
-                const providerName = engine.usingOllama ? 'Ollama' : 'Fallback';
                 const statusMsg = addMessage('assistant', null, null,
-                    `<i class="fas fa-spinner spinner"></i> ${providerName}: generazione per "${prompt.substring(0, 30)}${prompt.length > 30 ? '...' : ''}"`
+                    `<i class="fas fa-spinner spinner"></i> Generazione per "${prompt.substring(0, 30)}${prompt.length > 30 ? '...' : ''}"`
                 );
 
                 try {
                     setAgentStep(1);
                     setLiveStatus('🧠 Generazione codice...', 'generating');
 
-                    const result = await engine.generate(prompt);
+                    // Genera il codice
+                    const code = generateAppCode(prompt);
+                    const blocks = {
+                        'index.html': code.html,
+                        'style.css': code.css,
+                        'script.js': code.js
+                    };
+
+                    // Aggiorna i file
+                    state.files = blocks;
 
                     statusMsg.remove();
 
-                    const blocks = extractCodeBlocks(result);
-                    const hasCode = Object.keys(blocks).length > 0;
+                    // Mostra il codice generato
+                    addMessage('assistant', '✅ App generata!', blocks);
 
-                    if (hasCode) {
-                        engine.updateFiles(blocks);
-                        addMessage('assistant', `✅ Generato con ${providerName}`, blocks);
-                        updatePreview();
-                        setLiveStatus('✅ App generata!', 'done');
-                        setAgentStep(3);
-                        showToast(`✅ App generata!`, 'success');
-                    } else {
-                        addMessage('assistant', result || '⚠️ Nessun codice valido trovato.');
-                        setLiveStatus('⚠️ Nessun codice valido', 'error');
-                        setAgentStep(0);
-                        showToast('⚠️ Nessun codice valido', 'warning');
-                    }
-
-                    engine.conversationHistory.push({ role: 'assistant', content: result });
+                    // Aggiorna preview
+                    updatePreview();
+                    setLiveStatus('✅ App generata!', 'done');
+                    setAgentStep(3);
+                    showToast('✅ App generata!', 'success');
 
                 } catch (error) {
                     console.error('Generation error:', error);
                     statusMsg.remove();
-
-                    const fallback = generateFallbackCode(prompt);
-                    const blocks = {
-                        'index.html': fallback.html,
-                        'style.css': fallback.css,
-                        'script.js': fallback.js
-                    };
-                    engine.updateFiles(blocks);
-                    addMessage('assistant', '⚠️ Errore, usato fallback di emergenza', blocks);
-                    updatePreview();
-                    setLiveStatus('✅ App generata (fallback)', 'done');
-                    setAgentStep(3);
-                    showToast('⚠️ Usato fallback di emergenza', 'warning');
+                    addMessage('assistant', '❌ Errore durante la generazione');
+                    setLiveStatus('❌ Errore', 'error');
+                    setAgentStep(0);
+                    showToast('❌ Errore generazione', 'error');
                 }
 
-                engine.isGenerating = false;
+                state.isGenerating = false;
                 sendBtn.disabled = false;
                 promptInput.focus();
             }
@@ -2127,7 +1647,7 @@
 
             function handleSend() {
                 const text = promptInput.value.trim();
-                if (!text || engine.isGenerating) return;
+                if (!text || state.isGenerating) return;
                 generateCode(text);
                 promptInput.value = '';
                 promptInput.style.height = 'auto';
@@ -2172,7 +1692,6 @@
                         Conversazione reimpostata. Descrivimi la tua app!
                     </div>
                 `;
-                engine.conversationHistory = [];
                 setLiveStatus('🔄 Resettato', 'idle');
                 setAgentStep(0);
                 showToast('Conversazione resettata', 'success');
@@ -2183,59 +1702,6 @@
                     switchPanel(tab.dataset.panel);
                 });
             });
-
-            // Config
-            configBadge.addEventListener('click', () => {
-                const config = getOllamaConfig();
-                ollamaEndpoint.value = config.endpoint;
-                ollamaModel.value = config.model;
-                configModal.classList.add('active');
-                checkOllama();
-            });
-
-            configCancel.addEventListener('click', () => {
-                configModal.classList.remove('active');
-            });
-            configModal.addEventListener('click', (e) => {
-                if (e.target === configModal) configModal.classList.remove('active');
-            });
-
-            configSave.addEventListener('click', () => {
-                const endpoint = ollamaEndpoint.value.trim();
-                const model = ollamaModel.value.trim();
-                if (endpoint && model) {
-                    saveOllamaConfig(endpoint, model);
-                    engine.ollama.config = { endpoint, model };
-                    engine.ollama.test().then(() => {
-                        engine.updateUI();
-                        configModal.classList.remove('active');
-                        showToast('✅ Configurazione salvata!', 'success');
-                    });
-                }
-            });
-
-            async function checkOllama() {
-                ollamaStatusText.textContent = 'Verifica connessione...';
-                ollamaStatus.className = 'api-status info';
-                try {
-                    const config = getOllamaConfig();
-                    const resp = await fetch(config.endpoint, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ model: config.model, prompt: 'Ciao', stream: false })
-                    });
-                    if (resp.ok) {
-                        ollamaStatus.className = 'api-status success';
-                        ollamaStatusText.textContent = '✅ Ollama disponibile!';
-                    } else {
-                        ollamaStatus.className = 'api-status error';
-                        ollamaStatusText.textContent = '❌ Ollama non risponde. Verifica che sia in esecuzione.';
-                    }
-                } catch {
-                    ollamaStatus.className = 'api-status error';
-                    ollamaStatusText.textContent = '❌ Ollama non trovato. Assicurati che sia in esecuzione.';
-                }
-            }
 
             // ============================
             //  KEYBOARD SHORTCUTS
@@ -2250,55 +1716,22 @@
                     e.preventDefault();
                     runBtn.click();
                 }
-                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                    e.preventDefault();
-                    configBadge.click();
-                }
-                if (e.key === 'Escape') {
-                    if (configModal.classList.contains('active')) configModal.classList.remove('active');
-                }
             });
 
             // ============================
             //  INIT
             // ============================
 
-            // File iniziali
-            const initHtml = `<!DOCTYPE html>
-        <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>App</title><link rel="stylesheet" href="style.css"></head>
-        <body><div id="app"><h1>✨ Ciao, mondo!</h1><p>App generata con AppForge</p><button id="btnClick">Cliccami</button>
-        <script src="script.js"><\/script></div></body></html>`;
-            const initCss = `*{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:system-ui;display:flex;justify-content:center;align-items:center;min-height:100vh;background:linear-gradient(135deg,#f0f0f5,#e8e8f0);margin:0}
-        #app{background:white;padding:30px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.08);text-align:center;width:100%;max-width:400px;margin:20px}
-        h1{color:#1a1a2e;font-size:24px;margin-bottom:10px}
-        p{color:#4a4a5a;margin-bottom:16px}
-        button{padding:12px 28px;border:none;border-radius:12px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;font-weight:600;font-size:15px;cursor:pointer;transition:0.2s}
-        button:active{transform:scale(0.96)}`;
-            const initJs =
-                `document.addEventListener('DOMContentLoaded',()=>{document.getElementById('btnClick')?.addEventListener('click',()=>{alert('👋 Ciao da AppForge!');});});`;
-
-            engine.files = {
-                'index.html': initHtml,
-                'style.css': initCss,
-                'script.js': initJs
-            };
-
-            // Avvia
-            await engine.init();
+            // File iniziali (già impostati nello state)
             updatePreview();
-            engine.updateUI();
+            setAgentStep(0);
 
-            console.log('🚀 AppForge - Design iOS Premium');
-            console.log('📦 Motore:', engine.usingOllama ? 'Ollama' : 'Fallback');
+            console.log('🚀 AppForge - Funziona subito!');
             console.log('💡 Scrivi una descrizione e genera la tua app!');
-            console.log('🎯 Premi Ctrl+K per configurare Ollama');
+            console.log('📦 Nessuna API, nessuna chiave, tutto gratis!');
 
-            if (!engine.ollama.available) {
-                setTimeout(() => {
-                    showToast('⚠️ Ollama non disponibile. Uso fallback locale.', 'warning');
-                }, 1500);
-            }
+            // Focus iniziale
+            setTimeout(() => promptInput.focus(), 500);
 
         })();
     </script>
